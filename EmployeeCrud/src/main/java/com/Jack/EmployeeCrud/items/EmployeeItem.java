@@ -1,5 +1,6 @@
 package com.Jack.EmployeeCrud.items;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +21,7 @@ private String fullName;
 private String firstName;
 
 @Column
+@Basic(optional = true)
 private String middleName;
 
 @Column
