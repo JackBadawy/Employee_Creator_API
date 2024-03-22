@@ -1,2 +1,4 @@
 21/03/24
-add service functionality 
+add service functionality #DONE!!
+render employee info to page - no styling 
+style employee boxes to look like example image.
