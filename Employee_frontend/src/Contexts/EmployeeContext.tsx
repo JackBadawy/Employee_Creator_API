@@ -6,11 +6,13 @@ import {
 } from "../Services/Employee_Crud_services";
 
 export interface EmployeeItem {
-  id: string; //potentially make optional
-  title: string;
-  content: string;
-  category: string;
-  ticked: boolean;
+  employmentType: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+  email: string;
+  contractLength: string;
+  currentEmployee: boolean;
 }
 
 interface EmployeeContextType {
