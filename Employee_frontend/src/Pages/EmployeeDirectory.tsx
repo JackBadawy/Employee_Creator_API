@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useEmployeeContext } from "../Contexts/UseEmployeeContext";
 import EmployeeCard from "../Components/EmployeeCard";
 import "../Styles/EmployeeDirectoryStyles.scss";
+import DirectoryUtilities from "../Components/DirectoryUtilities";
 
 const EmployeeDirectory = () => {
   const {
@@ -38,6 +39,7 @@ const EmployeeDirectory = () => {
       <header className="directory__header">
         <h2 className="directory__header__title">Employee Directory</h2>
       </header>
+      <DirectoryUtilities />
       <div className="directory__card-container">
         {employeeList.map((employeeCard) => (
           <EmployeeCard {...employeeCard} key={employeeCard.id} />
