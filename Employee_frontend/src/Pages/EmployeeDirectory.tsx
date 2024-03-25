@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useEmployeeContext } from "../Contexts/UseEmployeeContext";
 import EmployeeCard from "../Components/EmployeeCard";
+import "../Styles/EmployeeDirectoryStyles.scss";
 
 const EmployeeDirectory = () => {
   const {
@@ -34,10 +35,14 @@ const EmployeeDirectory = () => {
 
   return (
     <div>
-      <h2>Employee Directory</h2>
-      {employeeList.map((employeeCard) => (
-        <EmployeeCard {...employeeCard} key={employeeCard.id} />
-      ))}
+      <header className="directory__header">
+        <h2 className="directory__header__title">Employee Directory</h2>
+      </header>
+      <div className="directory__card-container">
+        {employeeList.map((employeeCard) => (
+          <EmployeeCard {...employeeCard} key={employeeCard.id} />
+        ))}
+      </div>
     </div>
   );
 };

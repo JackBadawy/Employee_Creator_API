@@ -1,0 +1,29 @@
+.employee-card {
+  /* background-color: green; */
+  display: flex;
+  flex-direction: column;
+  width: 720px;
+  justify-content: space-between;
+  padding-left: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  &__buttons {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 8px;
+    display: flex;
+    gap: 8px;
+  }
+  &__container {
+    justify-content: space-between;
+    display: flex;
+    padding-left: 8px;
+  }
+  &__h-rule {
+    width: 100%;
+    border: none;
+    height: 1px;
+
+    background-color: rgb(220, 220, 220);
+  }
+}

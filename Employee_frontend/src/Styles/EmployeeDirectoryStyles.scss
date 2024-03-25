@@ -1,0 +1,17 @@
+.directory {
+  &__card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  &__header {
+    height: 160px;
+    background-color: rgb(244, 244, 244);
+    display: flex;
+    margin-bottom: 8px;
+    align-items: center;
+    &__title {
+      margin-left: 10%;
+    }
+  }
+}
