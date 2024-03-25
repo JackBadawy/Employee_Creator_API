@@ -15,6 +15,7 @@ const EmployeeCard = (employeeDetails) => {
         </div>
         <div className="employee-card__buttons">
           <button>Edit</button>
+          <p>|</p>
           <button>Delete</button>
         </div>
       </div>
