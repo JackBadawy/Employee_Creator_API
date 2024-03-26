@@ -6,6 +6,9 @@ const AddNewEmployeePage = () => {
     lastName: "",
     email: "",
     address: "",
+    employmentType: "",
+    contractLength: "",
+    currentEmployee: true,
   });
 
   return (
