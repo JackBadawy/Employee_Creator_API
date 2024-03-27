@@ -1,0 +1,10 @@
+.employee-form {
+  display: "flex";
+  flex-direction: "column";
+  max-width: "300px";
+  gap: "10px";
+  &__current-employee {
+    display: flex;
+    gap: 8px;
+  }
+}

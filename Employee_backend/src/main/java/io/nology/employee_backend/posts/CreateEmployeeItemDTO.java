@@ -13,7 +13,7 @@ public class CreateEmployeeItemDTO {
 	private String lastName;
 	
 	@NotBlank
-	private String emplymentType; //maybe change to single char
+	private String employmentType; //maybe change to single char
 	
 	@NotBlank 
 	private String contractLength;
@@ -42,12 +42,12 @@ public class CreateEmployeeItemDTO {
 		this.lastName = lastName;
 	}
 
-	public String getEmplymentType() {
-		return emplymentType;
+	public String getEmploymentType() {
+		return employmentType;
 	}
 
-	public void setEmplymentType(String emplymentType) {
-		this.emplymentType = emplymentType;
+	public void setEmploymentType(String employmentType) {
+		this.employmentType = employmentType;
 	}
 
 	public String getContractLength() {

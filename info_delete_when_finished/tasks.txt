@@ -1,4 +1,9 @@
 21/03/24
 add service functionality #DONE!!
-render employee info to page - no styling 
+render employee info to page - no styling #DONE!!!
 style employee boxes to look like example image.
+add ability for adding new employee
+add ability to edit (have it take you to new page) 
+add ability to delete (have modal pop up to confirm)
+
+add weekly hours and fulltime/parttime

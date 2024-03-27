@@ -4,6 +4,8 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import EmployeeDirectory from "./Pages/EmployeeDirectory";
 import { EmployeeProvider } from "./Contexts/EmployeeContext";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AddNewEmployeePage from "./Pages/AddNewEmployeePage";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -11,7 +13,12 @@ function App() {
   return (
     <>
       <EmployeeProvider>
-        <EmployeeDirectory />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<EmployeeDirectory />} />
+            <Route path="/new" element={<AddNewEmployeePage />} />
+          </Routes>
+        </BrowserRouter>
       </EmployeeProvider>
     </>
   );
