@@ -1,12 +1,23 @@
-import React from "react";
 import "../Styles/EmployeeCardStyles.scss";
 import { useNavigate } from "react-router-dom";
+import { useEmployeeContext } from "../Contexts/UseEmployeeContext";
 
 const EmployeeCard = (employeeDetails) => {
   const navigate = useNavigate();
+  const { deleteEmployeeItem } = useEmployeeContext();
 
   const handleEdit = () => {
     navigate(`/edit/${employeeDetails.id}`);
+  };
+
+  const handleDelete = async () => {
+    const isConfirmed = window.confirm(
+      "Are you sure you want to delete this employee?"
+    );
+    if (isConfirmed) {
+      await deleteEmployeeItem(employeeDetails.id);
+      // Optionally, trigger a state update or refetch the employee list after deletion
+    }
   };
 
   return (
@@ -23,7 +34,7 @@ const EmployeeCard = (employeeDetails) => {
         <div className="employee-card__buttons">
           <button onClick={handleEdit}>Edit</button>
           <p>|</p>
-          <button>Delete</button>
+          <button onClick={handleDelete}>Delete</button>
         </div>
       </div>
     </div>

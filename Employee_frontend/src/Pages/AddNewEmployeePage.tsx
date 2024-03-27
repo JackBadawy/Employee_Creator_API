@@ -9,8 +9,8 @@ const AddNewEmployeePage = () => {
     lastName: "",
     email: "",
     address: "",
-    employmentType: "",
-    contractLength: "",
+    employmentType: "permanent",
+    contractLength: "1 yr",
     currentEmployee: true,
   });
 
