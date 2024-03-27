@@ -8,7 +8,7 @@ const DirectoryUtilities = () => {
       <p className="directory__utilities__para">
         Please click on 'Edit' to find more details of each employee.
       </p>
-      <Link to={"/new"} className="directory__utilities__add-emp-btn">
+      <Link to={"/new"} className="directory__utilities__btn">
         <p>Add employee</p>
       </Link>
     </div>

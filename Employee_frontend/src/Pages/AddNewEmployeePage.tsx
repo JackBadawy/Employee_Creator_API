@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../Styles/EmployeeForm.scss";
+import "../Styles/MiscStyles.scss";
 import { useNavigate } from "react-router-dom";
 import { useEmployeeContext } from "../Contexts/UseEmployeeContext";
+import { Link } from "react-router-dom";
 
 const AddNewEmployeePage = () => {
   const [newEmployeeFormData, setNewEmployeeFormData] = useState({
@@ -52,6 +54,9 @@ const AddNewEmployeePage = () => {
       <header className="directory__header">
         <h2 className="directory__header__title">Add New Employee</h2>
       </header>
+      <Link to={"/"} className="directory__utilities__btn form__btn">
+        <p>Home</p>
+      </Link>
       <form onSubmit={handleSubmit} className="employee-form">
         <div className="employee-form__item">
           <label htmlFor="firstName">First Name: </label>
@@ -129,7 +134,9 @@ const AddNewEmployeePage = () => {
             checked={newEmployeeFormData.currentEmployee === false}
           />
         </div>
-        <button type="submit">Add Employee</button>
+        <button type="submit" className="form__save">
+          Add Employee
+        </button>
       </form>
     </div>
   );

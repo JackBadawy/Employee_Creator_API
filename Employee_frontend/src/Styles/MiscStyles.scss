@@ -1,0 +1,36 @@
+@use "./Variables.scss";
+
+.form {
+  &__btn {
+    margin-bottom: 24px;
+    margin-left: 8px;
+  }
+  &__save {
+    background-color: Variables.$btn-clr;
+    color: Variables.$btn-txt;
+    height: 32px;
+    margin-top: 16px;
+    border-radius: 8px;
+    margin-right: 80%;
+    margin-left: 8px;
+    border: none;
+    &:hover {
+      background-color: Variables.$btn-hover-clr;
+    }
+  }
+  &__label {
+    width: 240px;
+    display: flex;
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  &__division {
+    margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
