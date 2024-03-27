@@ -71,6 +71,9 @@ const EditEmployeePage = () => {
 
   return (
     <div>
+      <header className="directory__header">
+        <h2 className="directory__header__title">Edit Employee</h2>
+      </header>
       <form onSubmit={handleUpdate} className="employee-form">
         <div className="employee-form__item">
           <label htmlFor="firstName">First Name: </label>

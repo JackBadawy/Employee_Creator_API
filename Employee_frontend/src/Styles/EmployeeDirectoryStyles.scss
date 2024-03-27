@@ -1,3 +1,5 @@
+@use "./Variables.scss";
+
 .directory {
   &__card-container {
     display: flex;
@@ -21,6 +23,20 @@
       gap: 80px;
       margin-top: 40px;
       margin-bottom: 32px;
+    }
+    &__add-emp-btn {
+      background-color: Variables.$btn-clr;
+      color: Variables.$btn-txt;
+      height: 32px;
+      width: 120px;
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+      &:hover {
+        background-color: Variables.$btn-hover-clr;
+      }
     }
   }
 }

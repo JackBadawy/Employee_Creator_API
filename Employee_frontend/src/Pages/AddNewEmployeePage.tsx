@@ -49,6 +49,9 @@ const AddNewEmployeePage = () => {
 
   return (
     <div>
+      <header className="directory__header">
+        <h2 className="directory__header__title">Add New Employee</h2>
+      </header>
       <form onSubmit={handleSubmit} className="employee-form">
         <div className="employee-form__item">
           <label htmlFor="firstName">First Name: </label>
