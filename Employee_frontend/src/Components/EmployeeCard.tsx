@@ -1,7 +1,14 @@
 import React from "react";
 import "../Styles/EmployeeCardStyles.scss";
+import { useNavigate } from "react-router-dom";
 
 const EmployeeCard = (employeeDetails) => {
+  const navigate = useNavigate();
+
+  const handleEdit = () => {
+    navigate(`/edit/${employeeDetails.id}`);
+  };
+
   return (
     <div className="employee-card">
       <hr className="employee-card__h-rule" />
@@ -14,7 +21,7 @@ const EmployeeCard = (employeeDetails) => {
           <p>{employeeDetails.email}</p>
         </div>
         <div className="employee-card__buttons">
-          <button>Edit</button>
+          <button onClick={handleEdit}>Edit</button>
           <p>|</p>
           <button>Delete</button>
         </div>
