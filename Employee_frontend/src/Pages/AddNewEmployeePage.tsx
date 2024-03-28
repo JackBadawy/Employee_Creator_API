@@ -58,85 +58,113 @@ const AddNewEmployeePage = () => {
         <p>Home</p>
       </Link>
       <form onSubmit={handleSubmit} className="employee-form">
-        <div className="employee-form__item">
-          <label htmlFor="firstName">First Name: </label>
-          <input
-            type="text"
-            name="firstName"
-            id="firstName"
-            onChange={handleChange}
-          />
+        <div className="form__container">
+          <div className="employee-form__personal form__division">
+            <h3>Personal information</h3>
+            <div className="employee-form__item">
+              <label htmlFor="firstName" className="form__label">
+                First Name:{" "}
+              </label>
+              <input
+                type="text"
+                name="firstName"
+                id="firstName"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="employee-form__item">
+              <label htmlFor="lastName" className="form__label">
+                Last Name:{" "}
+              </label>
+              <input
+                type="text"
+                name="lastName"
+                id="lastName"
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <div className="employee-form__contact form__division">
+            <h3>Contact details</h3>
+            <div className="employee-form__item">
+              <label htmlFor="email" className="form__label">
+                Email:{" "}
+              </label>
+              <input
+                type="text"
+                name="email"
+                id="email"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="employee-form__item">
+              <label htmlFor="address" className="form__label">
+                Address:{" "}
+              </label>
+              <input
+                type="text"
+                name="address"
+                id="address"
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <div className="employee-form__status form__division">
+            <h3>Employee status</h3>
+            <div className="employee-form__item">
+              <label htmlFor="contractLength" className="form__label">
+                Contract Length:{" "}
+              </label>
+              <select
+                name="contractLength"
+                id="contractLength"
+                onChange={handleChange}
+              >
+                <option value="1 yr">1 Year</option>
+                <option value="2 yr">2 Years</option>
+                <option value="5 yr">5 Years</option>
+                <option value="10 yr">10 Years</option>
+              </select>
+            </div>
+            <div className="employee-form__item">
+              <label htmlFor="employementType" className="form__label">
+                Employment Type:{" "}
+              </label>
+              <select
+                name="employmentType"
+                id="employmentType"
+                onChange={handleChange}
+              >
+                <option value="permanent">Permanent</option>
+                <option value="contract">Contract</option>
+              </select>
+            </div>
+            <div className="employee-form__item employee-form__current-employee">
+              <p>Current employee:</p>
+              <label htmlFor="yesCurrent">Yes</label>
+              <input
+                type="radio"
+                id="yesCurrent"
+                name="currentEmployee"
+                value="true"
+                onChange={handleChange}
+                checked={newEmployeeFormData.currentEmployee === true}
+              />
+              <label htmlFor="noCurrent">No</label>
+              <input
+                type="radio"
+                id="noCurrent"
+                name="currentEmployee"
+                value="false"
+                onChange={handleChange}
+                checked={newEmployeeFormData.currentEmployee === false}
+              />
+            </div>
+          </div>
+          <button type="submit" className="form__save">
+            Add Employee
+          </button>
         </div>
-        <div className="employee-form__item">
-          <label htmlFor="lastName">Last Name: </label>
-          <input
-            type="text"
-            name="lastName"
-            id="lastName"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="employee-form__item">
-          <label htmlFor="email">Email: </label>
-          <input type="text" name="email" id="email" onChange={handleChange} />
-        </div>
-        <div className="employee-form__item">
-          <label htmlFor="address">Address: </label>
-          <input
-            type="text"
-            name="address"
-            id="address"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="employee-form__item">
-          <label htmlFor="contractLength">Contract Length: </label>
-          <select
-            name="contractLength"
-            id="contractLength"
-            onChange={handleChange}
-          >
-            <option value="1 yr">1 Year</option>
-            <option value="2 yr">2 Years</option>
-            <option value="5 yr">5 Years</option>
-            <option value="10 yr">10 Years</option>
-          </select>
-        </div>
-        <div className="employee-form__item">
-          <label htmlFor="employementType">Employment Type: </label>
-          <select
-            name="employmentType"
-            id="employmentType"
-            onChange={handleChange}
-          >
-            <option value="permanent">Permanent</option>
-            <option value="contract">Contract</option>
-          </select>
-        </div>
-        <div className="employee-form__item employee-form__current-employee">
-          <p>Current employee:</p>
-          <label htmlFor="yesCurrent">Yes</label>
-          <input
-            type="radio"
-            id="yesCurrent"
-            name="currentEmployee"
-            value="true"
-            onChange={handleChange}
-            checked={newEmployeeFormData.currentEmployee === true}
-          />
-          <label htmlFor="noCurrent">No</label>
-          <input
-            type="radio"
-            id="noCurrent"
-            name="currentEmployee"
-            value="false"
-            onChange={handleChange}
-            checked={newEmployeeFormData.currentEmployee === false}
-          />
-        </div>
-        <button type="submit" className="form__save">
-          Add Employee
-        </button>
       </form>
     </div>
   );
