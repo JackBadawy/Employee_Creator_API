@@ -22,9 +22,24 @@ const AddNewEmployeePage = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
+    const formValues = Object.values(newEmployeeFormData);
+    if (
+      formValues.some(
+        (value) => value === "" || (Array.isArray(value) && value.length === 0)
+      )
+    ) {
+      alert("Please fill out all fields before submitting.");
+      return;
+    }
+
     if (employeeContext) {
-      await employeeContext.addEmployeeItem(newEmployeeFormData);
-      navigate("/");
+      try {
+        await employeeContext.addEmployeeItem(newEmployeeFormData);
+        navigate("/");
+      } catch (error) {
+        console.error("Failed to add new employee:", error);
+        alert("Failed to add new employee. Please try again.");
+      }
     }
   };
 

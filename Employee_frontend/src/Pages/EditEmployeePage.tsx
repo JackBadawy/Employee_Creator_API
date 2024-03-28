@@ -56,6 +56,15 @@ const EditEmployeePage = () => {
 
   const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const formValues = Object.values(editEmployeeFormData);
+    if (
+      formValues.some(
+        (value) => value === "" || (Array.isArray(value) && value.length === 0)
+      )
+    ) {
+      alert("Please fill out all fields before submitting.");
+      return;
+    }
     if (!employeeId) {
       console.error("Employee ID is undefined.");
       alert("An error occurred. Please try again.");
