@@ -25,16 +25,20 @@ const EmployeeCard = (employeeDetails) => {
       <hr className="employee-card__h-rule" />
       <div className="employee-card__container">
         <div className="employee-card__info">
-          <h5>
+          <p className="employee-card__full-name">
             {employeeDetails.firstName} {employeeDetails.lastName}
-          </h5>
+          </p>
           <p>Contract -{employeeDetails.contractLength}</p>
           <p>{employeeDetails.email}</p>
         </div>
         <div className="employee-card__buttons">
-          <button onClick={handleEdit}>Edit</button>
+          <button className="btn" onClick={handleEdit}>
+            Edit
+          </button>
           <p>|</p>
-          <button onClick={handleDelete}>Delete</button>
+          <button className="btn" onClick={handleDelete}>
+            Delete
+          </button>
         </div>
       </div>
     </div>

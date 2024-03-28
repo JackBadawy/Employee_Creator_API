@@ -37,7 +37,7 @@ const EmployeeDirectory = () => {
   return (
     <div>
       <header className="directory__header">
-        <h2 className="directory__header__title">Employee Directory</h2>
+        <h1 className="directory__header__title">Employee Directory</h1>
       </header>
       <DirectoryUtilities />
       <div className="directory__card-container">

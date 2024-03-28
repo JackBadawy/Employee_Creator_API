@@ -34,3 +34,10 @@
     gap: 8px;
   }
 }
+
+.btn {
+  border: none;
+  background-color: white;
+  color: Variables.$btn-clr;
+  font-weight: 700;
+}

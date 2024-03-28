@@ -52,7 +52,7 @@ const AddNewEmployeePage = () => {
   return (
     <div>
       <header className="directory__header">
-        <h2 className="directory__header__title">Add New Employee</h2>
+        <h1 className="directory__header__title">Add New Employee</h1>
       </header>
       <Link to={"/"} className="directory__utilities__btn form__btn">
         <p>Home</p>
