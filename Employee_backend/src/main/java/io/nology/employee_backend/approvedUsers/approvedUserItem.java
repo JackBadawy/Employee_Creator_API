@@ -1,4 +1,4 @@
-package io.nology.employee_backend.userApplications;
+package io.nology.employee_backend.approvedUsers;
 
 import java.util.Date;
 
@@ -14,9 +14,8 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
-@Table(name = "user_applications")
-public class UserApplicationItem {
-	
+@Table(name = "approved_users")
+public class approvedUserItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -26,6 +25,9 @@ public class UserApplicationItem {
 	
 	@Column
 	private String password;
+	
+	@Column
+	private String approvedBy;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column (nullable = false, updatable = false)
@@ -46,27 +48,4 @@ public class UserApplicationItem {
 	public void onUpdate() {
 		updatedAt = new Date();
 	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	
-
-	
-
-
-
 }

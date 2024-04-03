@@ -7,7 +7,8 @@ add ability to edit (have it take you to new page) #DONE!!!
 add ability to delete (have modal pop up to confirm) #DONE!!!
 
 
-rename tables to be more accurate
+rename tables to be more accurate #DONE
+have singleton to instantiate master user in approved users
 add search bar
 add search filters
 add weekly hours and fulltime/parttime

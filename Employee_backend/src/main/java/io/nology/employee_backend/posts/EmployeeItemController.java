@@ -29,23 +29,23 @@ import jakarta.validation.Valid;
 public class EmployeeItemController {
 	
 	@Autowired
-	private EmployeeItemService toDoItemService;
+	private EmployeeItemService employeeItemService;
 	
 	@PostMapping
 	public ResponseEntity<EmployeeItem> createPost(@Valid @RequestBody CreateEmployeeItemDTO data) {
-		EmployeeItem createdItem = this.toDoItemService.createItem(data);
+		EmployeeItem createdItem = this.employeeItemService.createItem(data);
 		return new ResponseEntity<>(createdItem, HttpStatus.CREATED);
 	}
 	
 	@GetMapping
 	public ResponseEntity<List<EmployeeItem>> getAllPosts() {
-		List<EmployeeItem> allItems = this.toDoItemService.getAll();
+		List<EmployeeItem> allItems = this.employeeItemService.getAll();
 		return new ResponseEntity<>(allItems, HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<EmployeeItem> getItemById(@PathVariable Long id) {
-		Optional<EmployeeItem> maybeItem = this.toDoItemService.findItemById(id);
+		Optional<EmployeeItem> maybeItem = this.employeeItemService.findItemById(id);
 		
 		if (maybeItem.isPresent()) {
             EmployeeItem foundItem = maybeItem.get();
@@ -58,7 +58,7 @@ public class EmployeeItemController {
 	@PatchMapping("/{id}")
 	public ResponseEntity<EmployeeItem> updateItemById(@Valid @RequestBody UpdateEmployeeItemDTO data, @PathVariable Long id) {
 		
-		Optional<EmployeeItem> maybeUpdatedItem = this.toDoItemService.updateById(data, id);
+		Optional<EmployeeItem> maybeUpdatedItem = this.employeeItemService.updateById(data, id);
 		
 		if (maybeUpdatedItem.isPresent()) {
             EmployeeItem foundItem = maybeUpdatedItem.get();
@@ -70,7 +70,7 @@ public class EmployeeItemController {
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<EmployeeItem> deletePostById(@PathVariable Long id) {
-		boolean deleted = this.toDoItemService.deletePostById(id);
+		boolean deleted = this.employeeItemService.deletePostById(id);
 		
 		if (!deleted) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
