@@ -1,4 +1,4 @@
-package io.nology.employee_backend.posts;
+package io.nology.employee_backend.userApplications;
 
 import java.util.Date;
 
@@ -14,33 +14,18 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
-@Table(name = "employees")
-public class EmployeeItem {
+@Table(name = "user_applications")
+public class UserApplicationItem {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column
-	private String firstName;
+	private String username;
 	
 	@Column
-	private String lastName;
-	
-	@Column
-	private String employmentType; //contract or perm
-	
-	@Column
-	private String contractLength;
-	
-	@Column
-	private String email;
-	
-	@Column
-	private String address;
-	
-	@Column 
-	private boolean currentEmployee;
+	private String password;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column (nullable = false, updatable = false)
