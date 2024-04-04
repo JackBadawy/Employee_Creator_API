@@ -62,6 +62,20 @@ public class UserApplicationItem {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	
 	
 	
 
