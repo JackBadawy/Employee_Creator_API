@@ -3,6 +3,7 @@ package io.nology.employee_backend.posts;
 import org.springframework.context.annotation.Conditional;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 public class CreateEmployeeItemDTO {
 	
@@ -25,6 +26,16 @@ public class CreateEmployeeItemDTO {
 	
 	@NotBlank 
 	private String address;
+
+	private int salary;
+	
+	private boolean fulltime;
+	
+	private int weeklyHours;
+	
+	private int[] startDate; 
+	
+	private int[] endDate; 
 
 	public String getFirstName() {
 		return firstName;
@@ -81,10 +92,45 @@ public class CreateEmployeeItemDTO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
-	
-	
-	
-	
+
+	public int getSalary() {
+		return salary;
+	}
+
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+
+	public boolean isFulltime() {
+		return fulltime;
+	}
+
+	public void setFulltime(boolean fulltime) {
+		this.fulltime = fulltime;
+	}
+
+	public int getWeeklyHours() {
+		return weeklyHours;
+	}
+
+	public void setWeeklyHours(int weeklyHours) {
+		this.weeklyHours = weeklyHours;
+	}
+
+	public int[] getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(int[] startDate) {
+		this.startDate = startDate;
+	}
+
+	public int[] getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(int[] endDate) {
+		this.endDate = endDate;
+	} 
 
 }

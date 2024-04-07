@@ -2,6 +2,8 @@ package io.nology.employee_backend.posts;
 
 import java.util.Date;
 
+import org.springframework.lang.Nullable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -41,6 +43,21 @@ public class EmployeeItem {
 	
 	@Column 
 	private boolean currentEmployee;
+	
+	@Column
+	private int salary;
+	
+	@Column 
+	private boolean fulltime;
+	
+	@Column 
+	private int weeklyHours;
+	
+	@Column
+	private int[] startDate; //01012000 = first of january
+	
+	@Column 
+	private int[] endDate; 
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column (nullable = false, updatable = false)
@@ -118,16 +135,48 @@ public class EmployeeItem {
 		this.currentEmployee = currentEmployee;
 	}
 
+	public int getSalary() {
+		return salary;
+	}
+
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+
+	public boolean isFulltime() {
+		return fulltime;
+	}
+
+	public void setFulltime(boolean fulltime) {
+		this.fulltime = fulltime;
+	}
+
+	public int getWeeklyHours() {
+		return weeklyHours;
+	}
+
+	public void setWeeklyHours(int weeklyHours) {
+		this.weeklyHours = weeklyHours;
+	}
+
+	public int[] getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(int[] startDate) {
+		this.startDate = startDate;
+	}
+
+	public int[] getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(int[] endDate) {
+		this.endDate = endDate;
+	} 
+
 	public Long getId() {
 		return id;
 	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	
-
-
 
 }

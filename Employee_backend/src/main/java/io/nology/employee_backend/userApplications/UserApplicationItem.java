@@ -72,15 +72,11 @@ public class UserApplicationItem {
 	}
 
 	public Date getUpdatedAt() {
-		return updatedAt;
+	    if (updatedAt != null && !updatedAt.equals(createdAt)) {
+	        return updatedAt;
+	    } else {
+	        return null; 
+	    }
 	}
-
-	
-	
-	
-
-	
-
-
 
 }
