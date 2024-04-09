@@ -23,7 +23,55 @@ const EditEmployeePage = () => {
     employmentType: "",
     contractLength: "",
     currentEmployee: true,
+    startDate: [1, 1, 1],
+    endDate: [],
+    fullTime: true,
+    salary: 0,
+    weeklyHours: 0,
   });
+
+  const [startDate, setStartDate] = useState({
+    year: new Date().getFullYear(),
+    month: new Date().getMonth() + 1,
+    day: new Date().getDate(),
+  });
+
+  const [endDate, setEndDate] = useState({
+    year: new Date().getFullYear(),
+    month: new Date().getMonth() + 1,
+    day: new Date().getDate(),
+  });
+
+  const years = Array.from(
+    { length: 30 },
+    (_, index) => new Date().getFullYear() - index
+  );
+  const months = Array.from({ length: 12 }, (_, index) => index + 1);
+  const days = Array.from({ length: 31 }, (_, index) => index + 1);
+
+  const handleDateChange = (e) => {
+    const { name, value } = e.target;
+    setStartDate((prev) => ({
+      ...prev,
+      [name]: parseInt(value, 10), // Convert value to number
+    }));
+  };
+
+  const handleEndDateChange = (e) => {
+    const { name, value } = e.target;
+    setEndDate((prev) => ({
+      ...prev,
+      [name]: parseInt(value, 10), // Ensuring the value is stored as a number
+    }));
+  };
+
+  useEffect(() => {
+    console.log("start date", startDate);
+  }, [startDate]);
+
+  useEffect(() => {
+    console.log("end date", endDate);
+  }, [endDate]);
 
   useEffect(() => {
     const fetchEmployeeData = async () => {
@@ -36,6 +84,20 @@ const EditEmployeePage = () => {
         }
         const data = await response.json();
         setEditEmployeeFormData(data);
+        if (data.startDate && data.startDate.length === 3) {
+          setStartDate({
+            year: data.startDate[2],
+            month: data.startDate[1],
+            day: data.startDate[0],
+          });
+        }
+        if (data.endDate && data.endDate.length === 3) {
+          setEndDate({
+            year: data.endDate[2],
+            month: data.endDate[1],
+            day: data.endDate[0],
+          });
+        }
       } catch (error) {
         console.error(error);
       }
@@ -52,11 +114,21 @@ const EditEmployeePage = () => {
       ...prevState,
       [name]: type === "radio" ? value === "true" : value,
     }));
+    console.log("updated values", editEmployeeFormData);
   };
 
   const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formValues = Object.values(editEmployeeFormData);
+
+    // Update the editEmployeeFormData with the startDate array
+    const updatedFormData = {
+      ...editEmployeeFormData,
+      startDate: [startDate.day, startDate.month, startDate.year],
+      endDate: [endDate.day, endDate.month, endDate.year],
+    };
+    console.log("updated values", updatedFormData);
+    // Now, you might want to validate your form data including the startDate
+    const formValues = Object.values(updatedFormData);
     if (
       formValues.some(
         (value) => value === "" || (Array.isArray(value) && value.length === 0)
@@ -65,14 +137,16 @@ const EditEmployeePage = () => {
       alert("Please fill out all fields before submitting.");
       return;
     }
+
     if (!employeeId) {
       console.error("Employee ID is undefined.");
       alert("An error occurred. Please try again.");
       return;
     }
 
+    // Use the updatedFormData with the correct startDate for submission
     try {
-      await updateEmployeeItem(employeeId!, editEmployeeFormData);
+      await updateEmployeeItem(employeeId, updatedFormData);
       navigate("/");
     } catch (error) {
       console.error("Failed to update Employee details", error);
@@ -160,6 +234,108 @@ const EditEmployeePage = () => {
                 <option value="2 yr">2 Years</option>
                 <option value="5 yr">5 Years</option>
                 <option value="10 yr">10 Years</option>
+              </select>
+            </div>
+            <div className="employee-form__item">
+              <label htmlFor="startYear" className="form__label">
+                Start Year:
+              </label>
+              <select
+                name="year"
+                id="startYear"
+                value={startDate.year}
+                onChange={handleDateChange}
+              >
+                {years.map((year) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="employee-form__item">
+              <label htmlFor="startMonth" className="form__label">
+                Start Month:
+              </label>
+              <select
+                name="month"
+                id="startMonth"
+                value={startDate.month}
+                onChange={handleDateChange}
+              >
+                {months.map((month) => (
+                  <option key={month} value={month}>
+                    {month}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="employee-form__item">
+              <label htmlFor="startDay" className="form__label">
+                Start Day:
+              </label>
+              <select
+                name="day"
+                id="startDay"
+                value={startDate.day}
+                onChange={handleDateChange}
+              >
+                {days.map((day) => (
+                  <option key={day} value={day}>
+                    {day}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="employee-form__item">
+              <label htmlFor="endYear" className="form__label">
+                End Year:
+              </label>
+              <select
+                name="year"
+                id="endYear"
+                value={endDate.year}
+                onChange={handleEndDateChange}
+              >
+                {years.map((year) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="employee-form__item">
+              <label htmlFor="endMonth" className="form__label">
+                End Month:
+              </label>
+              <select
+                name="month"
+                id="endMonth"
+                value={endDate.month}
+                onChange={handleEndDateChange}
+              >
+                {months.map((month) => (
+                  <option key={month} value={month}>
+                    {month}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="employee-form__item">
+              <label htmlFor="endDay" className="form__label">
+                End Day:
+              </label>
+              <select
+                name="day"
+                id="endDay"
+                value={endDate.day}
+                onChange={handleEndDateChange}
+              >
+                {days.map((day) => (
+                  <option key={day} value={day}>
+                    {day}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="employee-form__item">

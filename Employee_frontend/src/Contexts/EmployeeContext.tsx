@@ -14,6 +14,11 @@ export interface EmployeeItem {
   email: string;
   contractLength: string;
   currentEmployee: boolean;
+  startDate: number[];
+  endDate: number[];
+  fullTime: boolean;
+  salary: number;
+  weeklyHours: number;
 }
 
 interface EmployeeContextType {
