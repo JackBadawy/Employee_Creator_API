@@ -25,19 +25,19 @@ public class UpdateEmployeeItemDTO {
 	
 	private boolean currentEmployee;
 	
-	@Pattern(regexp = "^(?=\\S).*$", message="salary cannot be empty")
+	
 	private int salary;
 	
 	private boolean fulltime;
 	
-	@Pattern(regexp = "^(?=\\S).*$", message="weekly hours cannot be empty")
+	
 	private int weeklyHours;
 	
-	@Pattern(regexp = "^(?=\\S).*$", message="start date cannot be empty")
-	private int startDate; 
 	
-	@Pattern(regexp = "^(?=\\S).*$", message="end date cannot be empty")
-	private int endDate; 
+	private int[] startDate; 
+	
+	
+	private int[] endDate; 
 
 	public String getFirstName() {
 		return firstName;
@@ -119,19 +119,19 @@ public class UpdateEmployeeItemDTO {
 		this.weeklyHours = weeklyHours;
 	}
 
-	public int getStartDate() {
+	public int[] getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(int startDate) {
+	public void setStartDate(int[] startDate) {
 		this.startDate = startDate;
 	}
 
-	public int getEndDate() {
+	public int[] getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(int endDate) {
+	public void setEndDate(int[] endDate) {
 		this.endDate = endDate;
 	} 
 
