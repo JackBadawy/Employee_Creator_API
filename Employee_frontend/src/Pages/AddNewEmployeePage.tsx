@@ -11,10 +11,50 @@ const AddNewEmployeePage = () => {
     lastName: "",
     email: "",
     address: "",
-    employmentType: "permanent",
+    employmentType: "Permanent",
     contractLength: "1 yr",
     currentEmployee: true,
+    startDate: [1, 1, 1],
+    endDate: [1, 1, 1],
+    fullTime: true,
+    salary: 0,
+    weeklyHours: 0,
   });
+
+  const [startDate, setStartDate] = useState({
+    year: new Date().getFullYear(),
+    month: new Date().getMonth() + 1,
+    day: new Date().getDate(),
+  });
+
+  const [endDate, setEndDate] = useState({
+    year: new Date().getFullYear(),
+    month: new Date().getMonth() + 1,
+    day: new Date().getDate(),
+  });
+
+  const years = Array.from(
+    { length: 30 },
+    (_, index) => new Date().getFullYear() - index
+  );
+  const months = Array.from({ length: 12 }, (_, index) => index + 1);
+  const days = Array.from({ length: 31 }, (_, index) => index + 1);
+
+  const handleDateChange = (e) => {
+    const { name, value } = e.target;
+    setStartDate((prev) => ({
+      ...prev,
+      [name]: parseInt(value, 10),
+    }));
+  };
+
+  const handleEndDateChange = (e) => {
+    const { name, value } = e.target;
+    setEndDate((prev) => ({
+      ...prev,
+      [name]: parseInt(value, 10),
+    }));
+  };
 
   const navigate = useNavigate();
   const employeeContext = useEmployeeContext();
@@ -22,7 +62,13 @@ const AddNewEmployeePage = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    const formValues = Object.values(newEmployeeFormData);
+    const updatedFormData = {
+      ...newEmployeeFormData,
+      startDate: [startDate.year, startDate.month, startDate.day],
+      endDate: [endDate.year, endDate.month, endDate.day],
+    };
+
+    const formValues = Object.values(updatedFormData);
     if (
       formValues.some(
         (value) => value === "" || (Array.isArray(value) && value.length === 0)
@@ -32,14 +78,12 @@ const AddNewEmployeePage = () => {
       return;
     }
 
-    if (employeeContext) {
-      try {
-        await employeeContext.addEmployeeItem(newEmployeeFormData);
-        navigate("/");
-      } catch (error) {
-        console.error("Failed to add new employee:", error);
-        alert("Failed to add new employee. Please try again.");
-      }
+    try {
+      await employeeContext.addEmployeeItem(updatedFormData);
+      navigate("/");
+    } catch (error) {
+      console.error("Failed to add new employee:", error);
+      alert("Failed to add new employee. Please try again.");
     }
   };
 
@@ -140,6 +184,109 @@ const AddNewEmployeePage = () => {
                 <option value="5 yr">5 Years</option>
                 <option value="10 yr">10 Years</option>
               </select>
+
+              <div className="employee-form__item">
+                <label htmlFor="startYear" className="form__label">
+                  Start Year:
+                </label>
+                <select
+                  name="year"
+                  id="startYear"
+                  value={startDate.year}
+                  onChange={handleDateChange}
+                >
+                  {years.map((year) => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="employee-form__item">
+                <label htmlFor="startMonth" className="form__label">
+                  Start Month:
+                </label>
+                <select
+                  name="month"
+                  id="startMonth"
+                  value={startDate.month}
+                  onChange={handleDateChange}
+                >
+                  {months.map((month) => (
+                    <option key={month} value={month}>
+                      {month}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="employee-form__item">
+                <label htmlFor="startDay" className="form__label">
+                  Start Day:
+                </label>
+                <select
+                  name="day"
+                  id="startDay"
+                  value={startDate.day}
+                  onChange={handleDateChange}
+                >
+                  {days.map((day) => (
+                    <option key={day} value={day}>
+                      {day}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="employee-form__item">
+                <label htmlFor="endYear" className="form__label">
+                  End Year:
+                </label>
+                <select
+                  name="year"
+                  id="endYear"
+                  value={endDate.year}
+                  onChange={handleEndDateChange}
+                >
+                  {years.map((year) => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="employee-form__item">
+                <label htmlFor="endMonth" className="form__label">
+                  End Month:
+                </label>
+                <select
+                  name="month"
+                  id="endMonth"
+                  value={endDate.month}
+                  onChange={handleEndDateChange}
+                >
+                  {months.map((month) => (
+                    <option key={month} value={month}>
+                      {month}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="employee-form__item">
+                <label htmlFor="endDay" className="form__label">
+                  End Day:
+                </label>
+                <select
+                  name="day"
+                  id="endDay"
+                  value={endDate.day}
+                  onChange={handleEndDateChange}
+                >
+                  {days.map((day) => (
+                    <option key={day} value={day}>
+                      {day}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
             <div className="employee-form__item">
               <label htmlFor="employementType" className="form__label">

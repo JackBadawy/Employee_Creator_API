@@ -53,7 +53,7 @@ const EditEmployeePage = () => {
     const { name, value } = e.target;
     setStartDate((prev) => ({
       ...prev,
-      [name]: parseInt(value, 10), // Convert value to number
+      [name]: parseInt(value, 10),
     }));
   };
 
@@ -61,7 +61,7 @@ const EditEmployeePage = () => {
     const { name, value } = e.target;
     setEndDate((prev) => ({
       ...prev,
-      [name]: parseInt(value, 10), // Ensuring the value is stored as a number
+      [name]: parseInt(value, 10),
     }));
   };
 
@@ -120,14 +120,12 @@ const EditEmployeePage = () => {
   const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Update the editEmployeeFormData with the startDate array
     const updatedFormData = {
       ...editEmployeeFormData,
       startDate: [startDate.day, startDate.month, startDate.year],
       endDate: [endDate.day, endDate.month, endDate.year],
     };
     console.log("updated values", updatedFormData);
-    // Now, you might want to validate your form data including the startDate
     const formValues = Object.values(updatedFormData);
     if (
       formValues.some(
@@ -144,7 +142,6 @@ const EditEmployeePage = () => {
       return;
     }
 
-    // Use the updatedFormData with the correct startDate for submission
     try {
       await updateEmployeeItem(employeeId, updatedFormData);
       navigate("/");
