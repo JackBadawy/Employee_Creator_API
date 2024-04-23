@@ -1,7 +1,56 @@
+import { useContext, useState, useEffect } from "react";
+import { getAllUsers } from "../Services/User_services";
+import { useNavigate } from "react-router-dom";
+
 const LoginPage = () => {
+  const [userList, setUserList] = useState([]);
+
+  const [loginAttempt, setLoginAttempt] = useState({
+    username: "",
+    password: "",
+  });
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getAllUsers()
+      .then((users) => {
+        setUserList(users);
+      })
+      .catch((error) => {
+        console.error("Failed to load users:", error);
+        setUserList([]);
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log("userList", userList);
+  }, [userList]);
+
+  useEffect(() => {
+    console.log("loginAttempt", loginAttempt);
+  }, [loginAttempt]);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setLoginAttempt((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("pressed submit");
+    const user = userList.find(
+      (u) =>
+        u.username === loginAttempt.username &&
+        u.password === loginAttempt.password
+    );
+    if (user) {
+      navigate("/directory");
+    } else {
+      console.log("invalid credentials");
+    }
   };
 
   return (
@@ -10,11 +59,21 @@ const LoginPage = () => {
         <form onSubmit={handleSubmit} className="login__form">
           <div className="login__username-container">
             <label htmlFor="username">Username</label>
-            <input type="text" name="username" id="username" />
+            <input
+              type="text"
+              name="username"
+              id="username"
+              onChange={handleChange}
+            />
           </div>
           <div className="login__password-container">
             <label htmlFor="password">Password</label>
-            <input type="text" name="password" id="password" />
+            <input
+              type="text"
+              name="password"
+              id="password"
+              onChange={handleChange}
+            />
           </div>
           <div className="login_btn-container">
             <button type="submit" className="login__submit">
