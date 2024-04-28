@@ -1,0 +1,37 @@
+.login {
+  &__outer-container {
+    border: 1px gray solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+  }
+
+  &__login-box {
+    border: 1px gray solid;
+    padding: 8px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: end;
+    gap: 4px;
+
+    &__username,
+    &__password {
+      margin-right: 4px;
+    }
+  }
+  &__head-note {
+    border: 1px solid gray;
+    width: 262px;
+    height: 24px;
+    text-align: center;
+    padding-top: 8px;
+    background-color: grey;
+    color: white;
+  }
+}

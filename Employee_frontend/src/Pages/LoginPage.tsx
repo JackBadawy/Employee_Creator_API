@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { getAllUsers } from "../Services/User_services";
 import { useNavigate } from "react-router-dom";
+import "../Styles/LoginPageStyles.scss";
 
 const LoginPage = () => {
   const [userList, setUserList] = useState([]);
@@ -55,10 +56,17 @@ const LoginPage = () => {
 
   return (
     <div className="login__outer-container">
-      <div className="login__login_box">
+      <div className="login__head-note">
+        <p className="login__head-note__para">
+          Please enter username & password
+        </p>
+      </div>
+      <div className="login__login-box">
         <form onSubmit={handleSubmit} className="login__form">
           <div className="login__username-container">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username" className="login__form__username">
+              Username
+            </label>
             <input
               type="text"
               name="username"
@@ -67,7 +75,9 @@ const LoginPage = () => {
             />
           </div>
           <div className="login__password-container">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password" className="login__form__password">
+              Password
+            </label>
             <input
               type="text"
               name="password"
