@@ -2,6 +2,10 @@ import { useContext, useState, useEffect } from "react";
 import { getAllUsers } from "../Services/User_services";
 import { useNavigate } from "react-router-dom";
 import "../Styles/LoginPageStyles.scss";
+import {
+  usePersistedLogin,
+  usePersistedLoginContext,
+} from "../Contexts/UsePersistedLoginContext";
 
 const LoginPage = () => {
   const [userList, setUserList] = useState([]);
@@ -10,6 +14,8 @@ const LoginPage = () => {
     username: "",
     password: "",
   });
+
+  const { persistedLogin, setPersistedLogin } = usePersistedLoginContext();
 
   const navigate = useNavigate();
 
@@ -48,6 +54,10 @@ const LoginPage = () => {
         u.password === loginAttempt.password
     );
     if (user) {
+      setPersistedLogin({
+        username: loginAttempt.username,
+        password: loginAttempt.password,
+      });
       navigate("/directory");
     } else {
       console.log("invalid credentials");

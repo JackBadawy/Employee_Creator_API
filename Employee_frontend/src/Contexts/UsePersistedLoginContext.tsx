@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { PersistedLoginContext } from "./PersistedLoginContext";
 
-export function usePersistedLogin() {
+export function usePersistedLoginContext() {
   const context = useContext(PersistedLoginContext);
   if (!context) {
     throw new Error(
