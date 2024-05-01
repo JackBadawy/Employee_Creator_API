@@ -1,4 +1,11 @@
-import { createContext, useState, ReactNode, FC, useContext } from "react";
+import {
+  createContext,
+  useState,
+  ReactNode,
+  FC,
+  useContext,
+  useEffect,
+} from "react";
 
 export interface PersistedLogin {
   username: string;
@@ -21,10 +28,14 @@ interface PersistedLoginProviderProps {
 export const PersistedLoginProvider: FC<PersistedLoginProviderProps> = ({
   children,
 }) => {
-  const [persistedLogin, setPersistedLogin] = useState<PersistedLogin>({
-    username: "",
-    password: "",
+  const [persistedLogin, setPersistedLogin] = useState<PersistedLogin>(() => {
+    const savedLogin = sessionStorage.getItem("persistedLogin");
+    return savedLogin ? JSON.parse(savedLogin) : { username: "", password: "" };
   });
+
+  useEffect(() => {
+    sessionStorage.setItem("persistedLogin", JSON.stringify(persistedLogin));
+  }, [persistedLogin]);
 
   return (
     <PersistedLoginContext.Provider
