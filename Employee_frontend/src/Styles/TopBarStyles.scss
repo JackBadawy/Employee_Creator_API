@@ -20,5 +20,9 @@
     border-radius: 8px 0px 0px 8px;
     background-color: rgb(233, 233, 233);
     font-weight: 600;
+    &:hover {
+      background-color: black;
+      color: white;
+    }
   }
 }
