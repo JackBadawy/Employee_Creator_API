@@ -6,22 +6,25 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AddNewEmployeePage from "./Pages/AddNewEmployeePage";
 import EditEmployeePage from "./Pages/EditEmployeePage";
 import LoginPage from "./Pages/LoginPage";
+import { PersistedLoginProvider } from "./Contexts/PersistedLoginContext";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <EmployeeProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/directory" element={<EmployeeDirectory />} />
-            <Route path="/new" element={<AddNewEmployeePage />} />
-            <Route path="/edit/:employeeId" element={<EditEmployeePage />} />
-          </Routes>
-        </BrowserRouter>
-      </EmployeeProvider>
+      <PersistedLoginProvider>
+        <EmployeeProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<LoginPage />} />
+              <Route path="/directory" element={<EmployeeDirectory />} />
+              <Route path="/new" element={<AddNewEmployeePage />} />
+              <Route path="/edit/:employeeId" element={<EditEmployeePage />} />
+            </Routes>
+          </BrowserRouter>
+        </EmployeeProvider>
+      </PersistedLoginProvider>
     </>
   );
 }

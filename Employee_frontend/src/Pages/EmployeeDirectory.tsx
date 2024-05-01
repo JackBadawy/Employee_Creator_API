@@ -3,6 +3,8 @@ import { useEmployeeContext } from "../Contexts/UseEmployeeContext";
 import EmployeeCard from "../Components/EmployeeCard";
 import "../Styles/EmployeeDirectoryStyles.scss";
 import DirectoryUtilities from "../Components/DirectoryUtilities";
+import { usePersistedLoginContext } from "../Contexts/UsePersistedLoginContext";
+import TopBar from "../Components/TopBar";
 
 const EmployeeDirectory = () => {
   const {
@@ -11,6 +13,8 @@ const EmployeeDirectory = () => {
     deleteEmployeeItem,
     updateEmployeeItem,
   } = useEmployeeContext();
+
+  const { persistedLogin, setPersistedLogin } = usePersistedLoginContext();
 
   useEffect(() => {
     const fetchEmployeeList = async () => {
@@ -34,8 +38,13 @@ const EmployeeDirectory = () => {
     console.log("employeeList", employeeList);
   }, [employeeList]);
 
+  useEffect(() => {
+    console.log("persisted login", persistedLogin);
+  }, []);
+
   return (
     <div>
+      <TopBar />
       <header className="directory__header">
         <h1 className="directory__header__title">Employee Directory</h1>
       </header>

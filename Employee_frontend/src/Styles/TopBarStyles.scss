@@ -1,0 +1,24 @@
+@use "./Variables.scss";
+
+.top {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  &__btn-container {
+    display: flex;
+    justify-content: right;
+    gap: 8px;
+    align-items: center;
+  }
+  &__user {
+    font-weight: 600;
+  }
+  &__approval-btn {
+    border: none;
+    height: 24px;
+    border-radius: 8px 0px 0px 8px;
+    background-color: rgb(233, 233, 233);
+    font-weight: 600;
+  }
+}
