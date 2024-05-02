@@ -7,6 +7,7 @@ import AddNewEmployeePage from "./Pages/AddNewEmployeePage";
 import EditEmployeePage from "./Pages/EditEmployeePage";
 import LoginPage from "./Pages/LoginPage";
 import { PersistedLoginProvider } from "./Contexts/PersistedLoginContext";
+import NewUserPage from "./Pages/NewUserPage";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -21,6 +22,7 @@ function App() {
               <Route path="/directory" element={<EmployeeDirectory />} />
               <Route path="/new" element={<AddNewEmployeePage />} />
               <Route path="/edit/:employeeId" element={<EditEmployeePage />} />
+              <Route path="/new-user" element={<NewUserPage />} />
             </Routes>
           </BrowserRouter>
         </EmployeeProvider>

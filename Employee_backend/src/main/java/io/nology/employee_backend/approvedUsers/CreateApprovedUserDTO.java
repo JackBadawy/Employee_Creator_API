@@ -1,5 +1,7 @@
 package io.nology.employee_backend.approvedUsers;
 
+import org.springframework.lang.Nullable;
+
 import jakarta.validation.constraints.NotBlank;
 
 public class CreateApprovedUserDTO {
@@ -9,7 +11,7 @@ public class CreateApprovedUserDTO {
 	@NotBlank 
 	private String password;
 	
-	@NotBlank
+	@Nullable
 	private String approvedBy;
 
 	public String getUsername() {
