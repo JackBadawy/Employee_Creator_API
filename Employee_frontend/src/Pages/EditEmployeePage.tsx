@@ -144,7 +144,7 @@ const EditEmployeePage = () => {
 
     try {
       await updateEmployeeItem(employeeId, updatedFormData);
-      navigate("/");
+      navigate("/directory");
     } catch (error) {
       console.error("Failed to update Employee details", error);
       alert("An error occurred. Please try again.");
