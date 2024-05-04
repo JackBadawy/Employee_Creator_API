@@ -1,0 +1,56 @@
+@use "./Variables.scss";
+.new-user {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+    height: 90vh;
+  }
+  &__header {
+    height: 160px;
+    background-color: rgb(244, 244, 244);
+    display: flex;
+    margin-bottom: 8px;
+    align-items: center;
+    &__title {
+      margin-left: 10%;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    }
+  }
+  &__btn {
+    background-color: Variables.$btn-clr;
+    color: Variables.$btn-txt;
+    height: 32px;
+    width: 120px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    margin-left: 8px;
+    &:hover {
+      background-color: Variables.$btn-hover-clr;
+    }
+  }
+  &__fields-cont {
+    display: flex;
+    flex-direction: column;
+    justify-items: right;
+    align-items: end;
+    padding-right: 50%;
+    margin: 24px 0px 8px 0px;
+    gap: 8px;
+  }
+  &__field {
+    display: flex;
+    gap: 4px;
+  }
+  &__submit {
+    margin-top: 64px;
+  }
+}
+
+aside {
+  margin: 24px 0px 0px 8px;
+}

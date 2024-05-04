@@ -46,6 +46,10 @@ const LoginPage = () => {
     }));
   };
 
+  const goToNewUser = () => {
+    navigate("/new-user");
+  };
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const user = userList.find(
@@ -96,6 +100,7 @@ const LoginPage = () => {
             />
           </div>
           <div className="login_btn-container">
+            <button onClick={goToNewUser}>Create User</button>
             <button type="submit" className="login__submit">
               Login
             </button>

@@ -156,7 +156,7 @@ const EditEmployeePage = () => {
       <header className="directory__header">
         <h1 className="directory__header__title">Edit Employee</h1>
       </header>
-      <Link to={"/"} className="directory__utilities__btn form__btn">
+      <Link to={"/directory"} className="directory__utilities__btn form__btn">
         <p>Home</p>
       </Link>
       <form onSubmit={handleUpdate} className="employee-form">
