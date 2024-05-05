@@ -8,6 +8,8 @@ import EditEmployeePage from "./Pages/EditEmployeePage";
 import LoginPage from "./Pages/LoginPage";
 import { PersistedLoginProvider } from "./Contexts/PersistedLoginContext";
 import NewUserPage from "./Pages/NewUserPage";
+import ApprovalRequests from "./Pages/ApprovalRequests";
+import ApprovalRequestPage from "./Pages/ApprovalRequestPage";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -23,6 +25,7 @@ function App() {
               <Route path="/new" element={<AddNewEmployeePage />} />
               <Route path="/edit/:employeeId" element={<EditEmployeePage />} />
               <Route path="/new-user" element={<NewUserPage />} />
+              <Route path="/approvals" element={<ApprovalRequestPage />} />
             </Routes>
           </BrowserRouter>
         </EmployeeProvider>

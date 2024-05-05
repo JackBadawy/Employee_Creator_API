@@ -1,0 +1,33 @@
+@use "./Variables.scss";
+.approvals {
+  &__header {
+    height: 160px;
+    background-color: rgb(244, 244, 244);
+    display: flex;
+    margin-bottom: 8px;
+    align-items: center;
+    &__title {
+      margin-left: 10%;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    }
+  }
+  &__btn {
+    background-color: Variables.$btn-clr;
+    color: Variables.$btn-txt;
+    height: 32px;
+    width: 120px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    margin-left: 8px;
+    margin-bottom: 40px;
+    &:hover {
+      background-color: Variables.$btn-hover-clr;
+    }
+  }
+  &__para {
+    margin-left: 8px;
+  }
+}

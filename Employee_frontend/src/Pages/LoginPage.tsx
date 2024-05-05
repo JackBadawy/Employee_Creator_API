@@ -99,11 +99,13 @@ const LoginPage = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="login_btn-container">
-            <button onClick={goToNewUser}>Create User</button>
+          <div className="login__btn-cont">
             <button type="submit" className="login__submit">
               Login
             </button>
+            <div className="login_btn-container">
+              <button onClick={goToNewUser}>Create User</button>
+            </div>{" "}
           </div>
         </form>
       </div>

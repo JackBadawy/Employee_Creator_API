@@ -1,4 +1,8 @@
 .login {
+  &__btn-cont {
+    display: flex;
+    gap: 2px;
+  }
   &__outer-container {
     display: flex;
     flex-direction: column;

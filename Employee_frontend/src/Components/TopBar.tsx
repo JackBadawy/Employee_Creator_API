@@ -8,7 +8,7 @@ const TopBar = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/new-user");
+    navigate("/approvals");
   };
 
   return (
