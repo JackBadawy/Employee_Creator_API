@@ -66,13 +66,18 @@ const ApprovalRequestPage = () => {
         Home
       </button>
       {userList.filter((user) => !user.approvedBy).length > 0 ? (
-        <ul>
+        <ul className="approvals__list">
           {userList
             .filter((user) => !user.approvedBy)
             .map((user) => (
-              <li key={user.id}>
+              <li key={user.id} className="approvals__list-item">
                 {user.username}
-                <button onClick={() => handleApprove(user.id)}>Approve</button>
+                <button
+                  className="approvals__btn"
+                  onClick={() => handleApprove(user.id)}
+                >
+                  Approve
+                </button>
               </li>
             ))}
         </ul>

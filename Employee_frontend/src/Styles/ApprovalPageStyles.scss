@@ -30,4 +30,34 @@
   &__para {
     margin-left: 8px;
   }
+
+  &__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 40px;
+    &-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid black;
+      font-weight: 700;
+      width: 280px;
+    }
+  }
+  &__btn {
+    background-color: Variables.$btn-clr;
+    color: Variables.$btn-txt;
+    height: 32px;
+    width: 120px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    &:hover {
+      background-color: Variables.$btn-hover-clr;
+    }
+  }
 }
