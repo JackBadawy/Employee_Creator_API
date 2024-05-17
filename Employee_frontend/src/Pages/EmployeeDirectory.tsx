@@ -5,6 +5,7 @@ import "../Styles/EmployeeDirectoryStyles.scss";
 import DirectoryUtilities from "../Components/DirectoryUtilities";
 import { usePersistedLoginContext } from "../Contexts/UsePersistedLoginContext";
 import TopBar from "../Components/TopBar";
+import { useNavigate } from "react-router-dom";
 
 const EmployeeDirectory = () => {
   const {
@@ -13,6 +14,8 @@ const EmployeeDirectory = () => {
     deleteEmployeeItem,
     updateEmployeeItem,
   } = useEmployeeContext();
+
+  const navigate = useNavigate();
 
   const { persistedLogin, setPersistedLogin } = usePersistedLoginContext();
 
@@ -24,7 +27,6 @@ const EmployeeDirectory = () => {
           throw new Error("Failed to fetch Employee List");
         }
         const data = await response.json();
-        //console.log("employeeListData", data);
         setEmployeeList(data);
       } catch (error) {
         console.error("Failed to fetch Employee list");
@@ -33,6 +35,12 @@ const EmployeeDirectory = () => {
 
     fetchEmployeeList();
   }, []);
+
+  useEffect(() => {
+    if (!persistedLogin || !persistedLogin.username) {
+      navigate("/login");
+    }
+  }, [persistedLogin, navigate]);
 
   useEffect(() => {
     console.log("employeeList", employeeList);
