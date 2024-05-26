@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useEmployeeContext } from "../Contexts/UseEmployeeContext";
 import EmployeeCard from "../Components/EmployeeCard";
 import "../Styles/EmployeeDirectoryStyles.scss";
@@ -17,7 +17,7 @@ const EmployeeDirectory = () => {
 
   const navigate = useNavigate();
 
-  const { persistedLogin, setPersistedLogin } = usePersistedLoginContext();
+  const { persistedLogin } = usePersistedLoginContext();
 
   useEffect(() => {
     const fetchEmployeeList = async () => {
@@ -29,16 +29,18 @@ const EmployeeDirectory = () => {
         const data = await response.json();
         setEmployeeList(data);
       } catch (error) {
-        console.error("Failed to fetch Employee list");
+        console.error("Failed to fetch Employee list", error);
       }
     };
 
-    fetchEmployeeList();
-  }, []);
+    if (persistedLogin && persistedLogin.username) {
+      fetchEmployeeList();
+    }
+  }, [persistedLogin, setEmployeeList]);
 
   useEffect(() => {
     if (!persistedLogin || !persistedLogin.username) {
-      navigate("/login");
+      navigate("/");
     }
   }, [persistedLogin, navigate]);
 
@@ -48,7 +50,21 @@ const EmployeeDirectory = () => {
 
   useEffect(() => {
     console.log("persisted login", persistedLogin);
-  }, []);
+  }, [persistedLogin]);
+
+  if (!persistedLogin || !persistedLogin.username) {
+    return (
+      <div>
+        <TopBar />
+        <header className="directory__header">
+          <h1 className="directory__header__title">Employee Directory</h1>
+        </header>
+        <div className="directory__login-required">
+          Must be logged in to view employee directory!!!
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>

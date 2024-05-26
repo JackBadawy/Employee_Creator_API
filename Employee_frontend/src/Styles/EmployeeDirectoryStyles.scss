@@ -1,6 +1,12 @@
 @use "./Variables.scss";
 
 .directory {
+  &__login-required {
+    text-align: center;
+    margin-top: 10%;
+    color: red;
+    font-size: x-large;
+  }
   &__card-container {
     display: flex;
     flex-direction: column;

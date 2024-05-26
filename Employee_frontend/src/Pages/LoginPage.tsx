@@ -30,14 +30,6 @@ const LoginPage = () => {
       });
   }, []);
 
-  useEffect(() => {
-    console.log("userList", userList);
-  }, [userList]);
-
-  useEffect(() => {
-    console.log("loginAttempt", loginAttempt);
-  }, [loginAttempt]);
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setLoginAttempt((prevState) => ({
