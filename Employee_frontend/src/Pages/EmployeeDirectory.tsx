@@ -8,12 +8,7 @@ import TopBar from "../Components/TopBar";
 import { useNavigate } from "react-router-dom";
 
 const EmployeeDirectory = () => {
-  const {
-    employeeList,
-    setEmployeeList,
-    deleteEmployeeItem,
-    updateEmployeeItem,
-  } = useEmployeeContext();
+  const { employeeList, setEmployeeList } = useEmployeeContext();
 
   const navigate = useNavigate();
 
@@ -43,14 +38,6 @@ const EmployeeDirectory = () => {
       navigate("/");
     }
   }, [persistedLogin, navigate]);
-
-  useEffect(() => {
-    console.log("employeeList", employeeList);
-  }, [employeeList]);
-
-  useEffect(() => {
-    console.log("persisted login", persistedLogin);
-  }, [persistedLogin]);
 
   if (!persistedLogin || !persistedLogin.username) {
     return (
