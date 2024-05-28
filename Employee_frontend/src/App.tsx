@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import EmployeeDirectory from "./Pages/EmployeeDirectory";
 import { EmployeeProvider } from "./Contexts/EmployeeContext";
@@ -12,7 +12,9 @@ import ApprovalRequests from "./Pages/ApprovalRequests";
 import ApprovalRequestPage from "./Pages/ApprovalRequestPage";
 
 function App() {
-  const [count, setCount] = useState(0);
+  useEffect(() => {
+    document.title = "Employee Directory";
+  }, []);
 
   return (
     <>

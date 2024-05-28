@@ -2,18 +2,17 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEmployeeContext } from "../Contexts/UseEmployeeContext";
 import { Link } from "react-router-dom";
+import {
+  getEmployeeById,
+  updateEmployeeItem,
+} from "../Services/Employee_Crud_services";
 import "../Styles/MiscStyles.scss";
 
 const EditEmployeePage = () => {
   const navigate = useNavigate();
   const { employeeId } = useParams<{ employeeId: string }>();
-  const [employeeData, setEmployeeData] = useState(null);
-  const {
-    employeeList,
-    setEmployeeList,
-    deleteEmployeeItem,
-    updateEmployeeItem,
-  } = useEmployeeContext();
+  const [loading, setLoading] = useState(false);
+  const [buttonClicked, setButtonClicked] = useState(false);
 
   const [editEmployeeFormData, setEditEmployeeFormData] = useState({
     firstName: "",
@@ -42,9 +41,10 @@ const EditEmployeePage = () => {
     day: new Date().getDate(),
   });
 
+  const currentYear = new Date().getFullYear();
   const years = Array.from(
-    { length: 30 },
-    (_, index) => new Date().getFullYear() - index
+    { length: 40 },
+    (_, index) => currentYear - 30 + index
   );
   const months = Array.from({ length: 12 }, (_, index) => index + 1);
   const days = Array.from({ length: 31 }, (_, index) => index + 1);
@@ -66,23 +66,10 @@ const EditEmployeePage = () => {
   };
 
   useEffect(() => {
-    console.log("start date", startDate);
-  }, [startDate]);
-
-  useEffect(() => {
-    console.log("end date", endDate);
-  }, [endDate]);
-
-  useEffect(() => {
     const fetchEmployeeData = async () => {
+      setLoading(true);
       try {
-        const response = await fetch(
-          `http://localhost:8080/items/${employeeId}`
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch employee data");
-        }
-        const data = await response.json();
+        const data = await getEmployeeById(employeeId);
         setEditEmployeeFormData(data);
         if (data.startDate && data.startDate.length === 3) {
           setStartDate({
@@ -100,6 +87,8 @@ const EditEmployeePage = () => {
         }
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -114,18 +103,16 @@ const EditEmployeePage = () => {
       ...prevState,
       [name]: type === "radio" ? value === "true" : value,
     }));
-    console.log("updated values", editEmployeeFormData);
   };
 
   const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    setButtonClicked(true);
     const updatedFormData = {
       ...editEmployeeFormData,
       startDate: [startDate.day, startDate.month, startDate.year],
       endDate: [endDate.day, endDate.month, endDate.year],
     };
-    console.log("updated values", updatedFormData);
     const formValues = Object.values(updatedFormData);
     if (
       formValues.some(
@@ -133,12 +120,14 @@ const EditEmployeePage = () => {
       )
     ) {
       alert("Please fill out all fields before submitting.");
+      setButtonClicked(false);
       return;
     }
 
     if (!employeeId) {
       console.error("Employee ID is undefined.");
       alert("An error occurred. Please try again.");
+      setButtonClicked(false);
       return;
     }
 
@@ -148,6 +137,8 @@ const EditEmployeePage = () => {
     } catch (error) {
       console.error("Failed to update Employee details", error);
       alert("An error occurred. Please try again.");
+    } finally {
+      setButtonClicked(false);
     }
   };
 
@@ -171,7 +162,7 @@ const EditEmployeePage = () => {
                 type="text"
                 name="firstName"
                 id="firstName"
-                value={editEmployeeFormData.firstName}
+                value={loading ? "Loading..." : editEmployeeFormData.firstName}
                 onChange={handleChange}
               />
             </div>
@@ -183,7 +174,7 @@ const EditEmployeePage = () => {
                 type="text"
                 name="lastName"
                 id="lastName"
-                value={editEmployeeFormData.lastName}
+                value={loading ? "Loading..." : editEmployeeFormData.lastName}
                 onChange={handleChange}
               />
             </div>
@@ -198,7 +189,7 @@ const EditEmployeePage = () => {
                 type="text"
                 name="email"
                 id="email"
-                value={editEmployeeFormData.email}
+                value={loading ? "Loading..." : editEmployeeFormData.email}
                 onChange={handleChange}
               />
             </div>
@@ -210,7 +201,7 @@ const EditEmployeePage = () => {
                 type="text"
                 name="address"
                 id="address"
-                value={editEmployeeFormData.address}
+                value={loading ? "Loading..." : editEmployeeFormData.address}
                 onChange={handleChange}
               />
             </div>
@@ -371,8 +362,8 @@ const EditEmployeePage = () => {
               />
             </div>
           </div>
-          <button type="submit" className="form__save">
-            Save Changes
+          <button type="submit" className="form__save" disabled={buttonClicked}>
+            {buttonClicked ? "Please wait..." : "Save Changes"}
           </button>
         </div>
       </form>

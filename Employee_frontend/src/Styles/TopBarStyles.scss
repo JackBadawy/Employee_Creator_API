@@ -25,4 +25,18 @@
       color: white;
     }
   }
+  &__logout-btn {
+    background-color: Variables.$btn-clr;
+    color: Variables.$btn-txt;
+    height: 24px;
+    width: 80px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    &:hover {
+      background-color: Variables.$btn-hover-clr;
+    }
+  }
 }

@@ -1,40 +1,110 @@
 .login {
-  &__btn-cont {
-    display: flex;
-    gap: 2px;
-  }
   &__outer-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 100vh;
+    background-color: #f0f2f5;
+    font-family: Arial, sans-serif;
+  }
+
+  &__container {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__head-note {
+    background-color: #4a4a4a;
+    color: white;
+    padding: 10px 0;
+    border-radius: 5px 5px 0 0;
+    margin: -20px -20px 20px -20px;
+    font-size: 1.2em;
+    font-weight: bold;
   }
 
   &__login-box {
-    border: 1px gray solid;
-    padding: 8px;
+    padding: 20px;
   }
 
   &__form {
     display: flex;
     flex-direction: column;
-    justify-content: right;
-    align-items: end;
-    gap: 4px;
 
-    &__username,
-    &__password {
-      margin-right: 4px;
+    &__label {
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    &__input {
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: calc(100% - 22px);
     }
   }
-  &__head-note {
-    border: 1px solid gray;
-    width: 262px;
-    height: 24px;
+
+  &__btn-cont {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 8px;
+
+    button {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .login__submit {
+      background-color: #4a90e2;
+      color: white;
+    }
+
+    .login__create-user {
+      background-color: #f5a623;
+      color: white;
+    }
+  }
+
+  &__demo-note {
+    background-color: #fff3cd;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    max-width: 300px;
     text-align: center;
-    padding-top: 8px;
-    background-color: grey;
-    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  &__note-title {
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 10px;
+  }
+
+  &__note-txt {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+  }
+
+  &__note-details {
+    text-align: left;
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 0.9em;
   }
 }

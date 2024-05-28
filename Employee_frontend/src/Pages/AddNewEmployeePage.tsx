@@ -33,9 +33,12 @@ const AddNewEmployeePage = () => {
     day: new Date().getDate(),
   });
 
+  const [buttonClicked, setButtonClicked] = useState(false);
+
+  const currentYear = new Date().getFullYear();
   const years = Array.from(
-    { length: 30 },
-    (_, index) => new Date().getFullYear() - index
+    { length: 40 },
+    (_, index) => currentYear - 30 + index
   );
   const months = Array.from({ length: 12 }, (_, index) => index + 1);
   const days = Array.from({ length: 31 }, (_, index) => index + 1);
@@ -61,7 +64,7 @@ const AddNewEmployeePage = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
+    setButtonClicked(true);
     const updatedFormData = {
       ...newEmployeeFormData,
       startDate: [startDate.year, startDate.month, startDate.day],
@@ -80,7 +83,7 @@ const AddNewEmployeePage = () => {
 
     try {
       await employeeContext.addEmployeeItem(updatedFormData);
-      navigate("/");
+      navigate("/directory");
     } catch (error) {
       console.error("Failed to add new employee:", error);
       alert("Failed to add new employee. Please try again.");
@@ -103,10 +106,6 @@ const AddNewEmployeePage = () => {
       });
     }
   };
-
-  useEffect(() => {
-    console.log(newEmployeeFormData);
-  }, [newEmployeeFormData]);
 
   return (
     <div>
@@ -323,8 +322,8 @@ const AddNewEmployeePage = () => {
               />
             </div>
           </div>
-          <button type="submit" className="form__save">
-            Add Employee
+          <button type="submit" className="form__save" disabled={buttonClicked}>
+            {buttonClicked ? "Please wait..." : "Add Employee"}
           </button>
         </div>
       </form>

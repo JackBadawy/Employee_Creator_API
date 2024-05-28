@@ -16,7 +16,6 @@ const EmployeeCard = (employeeDetails) => {
     );
     if (isConfirmed) {
       await deleteEmployeeItem(employeeDetails.id);
-      // Optionally, trigger a state update or refetch the employee list after deletion
     }
   };
 

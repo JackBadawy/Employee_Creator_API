@@ -6,6 +6,7 @@ import DirectoryUtilities from "../Components/DirectoryUtilities";
 import { usePersistedLoginContext } from "../Contexts/UsePersistedLoginContext";
 import TopBar from "../Components/TopBar";
 import { useNavigate } from "react-router-dom";
+import { getAllEmployeeItems } from "../Services/Employee_Crud_services";
 
 const EmployeeDirectory = () => {
   const { employeeList, setEmployeeList } = useEmployeeContext();
@@ -17,11 +18,7 @@ const EmployeeDirectory = () => {
   useEffect(() => {
     const fetchEmployeeList = async () => {
       try {
-        const response = await fetch("http://localhost:8080/items");
-        if (!response.ok) {
-          throw new Error("Failed to fetch Employee List");
-        }
-        const data = await response.json();
+        const data = await getAllEmployeeItems();
         setEmployeeList(data);
       } catch (error) {
         console.error("Failed to fetch Employee list", error);

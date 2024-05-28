@@ -12,9 +12,7 @@ const TopBar = () => {
   };
 
   const handleLogout = () => {
-    // Clear the persisted login context
     setPersistedLogin({ username: "", password: "" });
-    // Optionally navigate to the login page
     navigate("/");
   };
 

@@ -1,5 +1,7 @@
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 export const getAllEmployeeItems = async () => {
-  const response = await fetch("http://localhost:8080/items");
+  const response = await fetch(`${BASE_URL}/items`);
   if (!response.ok) {
     throw new Error("Failed to get Employees");
   }
@@ -7,9 +9,18 @@ export const getAllEmployeeItems = async () => {
   return data;
 };
 
+export const getEmployeeById = async (employeeId: string) => {
+  const response = await fetch(`${BASE_URL}/items/${employeeId}`);
+  if (!response.ok) {
+    throw new Error("Failed to get Employee");
+  }
+  const data = await response.json();
+  return data;
+};
+
 export const postEmployeeItem = async (employeeData: any) => {
   try {
-    const response = await fetch("http://localhost:8080/items", {
+    const response = await fetch(`${BASE_URL}/items`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -31,8 +42,8 @@ export const postEmployeeItem = async (employeeData: any) => {
 
 export const deleteEmployeeItem = async (employeeId: any) => {
   try {
-    const response = await fetch(`http://localhost:8080/items/${employeeId}`, {
-      method: "Delete",
+    const response = await fetch(`${BASE_URL}/items/${employeeId}`, {
+      method: "DELETE",
     });
 
     if (!response.ok) {
@@ -49,7 +60,7 @@ export const updateEmployeeItem = async (
   employeeData: any
 ) => {
   try {
-    const response = await fetch(`http://localhost:8080/items/${employeeId}`, {
+    const response = await fetch(`${BASE_URL}/items/${employeeId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
