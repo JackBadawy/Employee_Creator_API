@@ -1,5 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 export const getAllUsers = async () => {
-  const response = await fetch("http://localhost:8080/users");
+  const response = await fetch(`${BASE_URL}/users`);
   if (!response.ok) {
     throw new Error("Failed to get users");
   }
@@ -7,8 +10,14 @@ export const getAllUsers = async () => {
   return data;
 };
 
-export const addUser = async (userData) => {
-  const response = await fetch("http://localhost:8080/users", {
+export interface UserData {
+  username: string;
+  password: string;
+  approvedBy: string | null;
+}
+
+export const addUser = async (userData: UserData) => {
+  const response = await fetch(`${BASE_URL}/users`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -25,14 +34,14 @@ export const addUser = async (userData) => {
 };
 
 export const fetchPendingApprovalUsers = async () => {
-  const response = await fetch("http://localhost:8080/users?approvedBy=null");
+  const response = await fetch(`${BASE_URL}/users?approvedBy=null`);
   if (!response.ok) throw new Error("Failed to fetch users");
   return await response.json();
 };
 
-export const approveUser = async (userId: any, approverUsername: any) => {
+export const approveUser = async (userId: string, approverUsername: string) => {
   try {
-    const response = await fetch(`http://localhost:8080/users/${userId}`, {
+    const response = await fetch(`${BASE_URL}/users/${userId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -47,7 +56,9 @@ export const approveUser = async (userId: any, approverUsername: any) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error approving user:", error.message);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    console.error("Error approving user:", (error as Error).message);
     throw error;
   }
 };

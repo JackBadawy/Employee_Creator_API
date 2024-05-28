@@ -1,12 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createContext, useState, ReactNode, FC } from "react";
 import {
   postEmployeeItem,
   deleteEmployeeItem,
   updateEmployeeItem,
 } from "../Services/Employee_Crud_services";
-import { useEmployeeContext } from "./UseEmployeeContext";
 
 export interface EmployeeItem {
+  [x: string]: any;
+  id: string;
   employmentType: string;
   firstName: string;
   lastName: string;
@@ -14,8 +16,8 @@ export interface EmployeeItem {
   email: string;
   contractLength: string;
   currentEmployee: boolean;
-  startDate: number[];
-  endDate: number[];
+  startDate: [number, number, number];
+  endDate: [number, number, number];
   fullTime: boolean;
   salary: number;
   weeklyHours: number;
@@ -42,16 +44,22 @@ interface EmployeeProviderProps {
 
 export const EmployeeProvider: FC<EmployeeProviderProps> = ({ children }) => {
   const [employeeList, setEmployeeList] = useState<EmployeeItem[]>([]);
-  const addEmployeeItem = async (newItem: any) => {
+
+  const addEmployeeItem = async (newItem: Omit<EmployeeItem, "id">) => {
     try {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       const addedItem = await postEmployeeItem(newItem);
       setEmployeeList((currentList) => [...currentList, addedItem]);
     } catch (error) {
       console.error("Error adding Employee item", error);
     }
   };
-  const deleteEmployeeItemContext = async (itemId) => {
+
+  const deleteEmployeeItemContext = async (itemId: string) => {
     try {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       await deleteEmployeeItem(itemId);
       setEmployeeList((currentList) =>
         currentList.filter((item) => item.id !== itemId)

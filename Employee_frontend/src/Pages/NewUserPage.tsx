@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { addUser } from "../Services/User_services";
 import { useNavigate } from "react-router-dom";
 import "../Styles/NewUserStyles.scss";
 
 const NewUserPage = () => {
-  const [newUserFormData, setNewUserFormData] = useState({
+  interface NewUserFormData {
+    username: string;
+    password: string;
+    approvedBy: string | null;
+  }
+
+  const [newUserFormData, setNewUserFormData] = useState<NewUserFormData>({
     username: "",
     password: "",
     approvedBy: null,
@@ -15,7 +21,7 @@ const NewUserPage = () => {
 
   const navigate = useNavigate();
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setNewUserFormData((prevState) => ({
       ...prevState,
@@ -23,7 +29,7 @@ const NewUserPage = () => {
     }));
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitting(true);
     setError("");
@@ -31,13 +37,17 @@ const NewUserPage = () => {
       const response = await addUser(newUserFormData);
       console.log("User added:", response);
 
-      setNewUserFormData({ username: "", password: "" });
+      setNewUserFormData({ username: "", password: "", approvedBy: null });
 
       alert("User successfully added!");
 
       returnHome();
     } catch (error) {
-      setError("Failed to add user: " + error.message);
+      if (error instanceof Error) {
+        setError("Failed to add user: " + error.message);
+      } else {
+        setError("Failed to add user.");
+      }
       console.error("Error adding user:", error);
     } finally {
       setIsSubmitting(false);

@@ -36,9 +36,9 @@ const ApprovalRequestPage = () => {
     loadUsers();
   }, []);
 
-  const handleApprove = async (userId) => {
+  const handleApprove = async (userId: number) => {
     try {
-      await approveUser(userId, persistedLogin.username);
+      await approveUser(userId.toString(), persistedLogin.username);
       setUserList((currentUsers) =>
         currentUsers.map((user) =>
           user.id === userId

@@ -1,8 +1,9 @@
 import "../Styles/EmployeeCardStyles.scss";
 import { useNavigate } from "react-router-dom";
 import { useEmployeeContext } from "../Contexts/UseEmployeeContext";
+import { EmployeeDetails } from "../types";
 
-const EmployeeCard = (employeeDetails) => {
+const EmployeeCard = (employeeDetails: EmployeeDetails) => {
   const navigate = useNavigate();
   const { deleteEmployeeItem } = useEmployeeContext();
 

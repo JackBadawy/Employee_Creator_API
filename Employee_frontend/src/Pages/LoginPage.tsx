@@ -1,11 +1,8 @@
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getAllUsers } from "../Services/User_services";
 import { useNavigate } from "react-router-dom";
 import "../Styles/LoginPageStyles.scss";
-import {
-  usePersistedLogin,
-  usePersistedLoginContext,
-} from "../Contexts/UsePersistedLoginContext";
+import { usePersistedLoginContext } from "../Contexts/UsePersistedLoginContext";
 
 const LoginPage = () => {
   const [userList, setUserList] = useState([]);
@@ -15,7 +12,7 @@ const LoginPage = () => {
     password: "",
   });
 
-  const { persistedLogin, setPersistedLogin } = usePersistedLoginContext();
+  const { setPersistedLogin } = usePersistedLoginContext();
 
   const navigate = useNavigate();
 
@@ -30,7 +27,7 @@ const LoginPage = () => {
       });
   }, []);
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setLoginAttempt((prevState) => ({
       ...prevState,
@@ -45,7 +42,7 @@ const LoginPage = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const user = userList.find(
-      (u) =>
+      (u: { username: string; password: string }) =>
         u.username === loginAttempt.username &&
         u.password === loginAttempt.password
     );

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
 import EmployeeDirectory from "./Pages/EmployeeDirectory";
 import { EmployeeProvider } from "./Contexts/EmployeeContext";
@@ -8,7 +8,6 @@ import EditEmployeePage from "./Pages/EditEmployeePage";
 import LoginPage from "./Pages/LoginPage";
 import { PersistedLoginProvider } from "./Contexts/PersistedLoginContext";
 import NewUserPage from "./Pages/NewUserPage";
-import ApprovalRequests from "./Pages/ApprovalRequests";
 import ApprovalRequestPage from "./Pages/ApprovalRequestPage";
 
 function App() {

@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useEmployeeContext } from "../Contexts/UseEmployeeContext";
 import { Link } from "react-router-dom";
 import {
   getEmployeeById,
@@ -10,7 +9,7 @@ import "../Styles/MiscStyles.scss";
 
 const EditEmployeePage = () => {
   const navigate = useNavigate();
-  const { employeeId } = useParams<{ employeeId: string }>();
+  const { employeeId } = useParams<{ employeeId?: string }>();
   const [loading, setLoading] = useState(false);
   const [buttonClicked, setButtonClicked] = useState(false);
 
@@ -22,8 +21,8 @@ const EditEmployeePage = () => {
     employmentType: "",
     contractLength: "",
     currentEmployee: true,
-    startDate: [1, 1, 1],
-    endDate: [],
+    startDate: [1, 1, 1] as [number, number, number],
+    endDate: [1, 1, 1] as [number, number, number],
     fullTime: true,
     salary: 0,
     weeklyHours: 0,
@@ -49,7 +48,7 @@ const EditEmployeePage = () => {
   const months = Array.from({ length: 12 }, (_, index) => index + 1);
   const days = Array.from({ length: 31 }, (_, index) => index + 1);
 
-  const handleDateChange = (e) => {
+  const handleDateChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     setStartDate((prev) => ({
       ...prev,
@@ -57,7 +56,7 @@ const EditEmployeePage = () => {
     }));
   };
 
-  const handleEndDateChange = (e) => {
+  const handleEndDateChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     setEndDate((prev) => ({
       ...prev,
@@ -66,6 +65,12 @@ const EditEmployeePage = () => {
   };
 
   useEffect(() => {
+    if (!employeeId) {
+      console.error("Employee ID is undefined.");
+      navigate("/directory");
+      return;
+    }
+
     const fetchEmployeeData = async () => {
       setLoading(true);
       try {
@@ -93,7 +98,7 @@ const EditEmployeePage = () => {
     };
 
     fetchEmployeeData();
-  }, [employeeId]);
+  }, [employeeId, navigate]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -110,15 +115,20 @@ const EditEmployeePage = () => {
     setButtonClicked(true);
     const updatedFormData = {
       ...editEmployeeFormData,
-      startDate: [startDate.day, startDate.month, startDate.year],
-      endDate: [endDate.day, endDate.month, endDate.year],
+      startDate: [startDate.day, startDate.month, startDate.year] as [
+        number,
+        number,
+        number
+      ],
+      endDate: [endDate.day, endDate.month, endDate.year] as [
+        number,
+        number,
+        number
+      ],
     };
+
     const formValues = Object.values(updatedFormData);
-    if (
-      formValues.some(
-        (value) => value === "" || (Array.isArray(value) && value.length === 0)
-      )
-    ) {
+    if (formValues.some((value) => value === "")) {
       alert("Please fill out all fields before submitting.");
       setButtonClicked(false);
       return;

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import "../Styles/EmployeeForm.scss";
 import "../Styles/MiscStyles.scss";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +43,7 @@ const AddNewEmployeePage = () => {
   const months = Array.from({ length: 12 }, (_, index) => index + 1);
   const days = Array.from({ length: 31 }, (_, index) => index + 1);
 
-  const handleDateChange = (e) => {
+  const handleDateChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     setStartDate((prev) => ({
       ...prev,
@@ -51,7 +51,7 @@ const AddNewEmployeePage = () => {
     }));
   };
 
-  const handleEndDateChange = (e) => {
+  const handleEndDateChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     setEndDate((prev) => ({
       ...prev,

@@ -1,11 +1,4 @@
-import {
-  createContext,
-  useState,
-  ReactNode,
-  FC,
-  useContext,
-  useEffect,
-} from "react";
+import { createContext, useState, ReactNode, FC, useEffect } from "react";
 
 export interface PersistedLogin {
   username: string;

@@ -1,3 +1,5 @@
+import { EmployeeItem } from "../Contexts/EmployeeContext";
+
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const getAllEmployeeItems = async () => {
@@ -18,7 +20,7 @@ export const getEmployeeById = async (employeeId: string) => {
   return data;
 };
 
-export const postEmployeeItem = async (employeeData: any) => {
+export const postEmployeeItem = async (employeeData: never) => {
   try {
     const response = await fetch(`${BASE_URL}/items`, {
       method: "POST",
@@ -35,12 +37,14 @@ export const postEmployeeItem = async (employeeData: any) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error creating Employee:", error.message);
+    if (error instanceof Error) {
+      console.error("Error creating Employee:", error.message);
+    }
     throw error;
   }
 };
 
-export const deleteEmployeeItem = async (employeeId: any) => {
+export const deleteEmployeeItem = async (employeeId: never) => {
   try {
     const response = await fetch(`${BASE_URL}/items/${employeeId}`, {
       method: "DELETE",
@@ -50,14 +54,16 @@ export const deleteEmployeeItem = async (employeeId: any) => {
       throw new Error("Failed to delete Employee");
     }
   } catch (error) {
-    console.error("Error deleting Employee:", error.message);
+    if (error instanceof Error) {
+      console.error("Error deleting Employee:", error.message);
+    }
     throw error;
   }
 };
 
 export const updateEmployeeItem = async (
-  employeeId: any,
-  employeeData: any
+  employeeId: string,
+  employeeData: Partial<EmployeeItem>
 ) => {
   try {
     const response = await fetch(`${BASE_URL}/items/${employeeId}`, {
@@ -75,7 +81,9 @@ export const updateEmployeeItem = async (
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error updating Employee:", error.message);
+    if (error instanceof Error) {
+      console.error("Error updating Employee:", error.message);
+    }
     throw error;
   }
 };

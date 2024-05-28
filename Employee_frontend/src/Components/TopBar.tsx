@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { usePersistedLoginContext } from "../Contexts/UsePersistedLoginContext";
 import "../Styles/TopBarStyles.scss";
 import { useNavigate } from "react-router-dom";
