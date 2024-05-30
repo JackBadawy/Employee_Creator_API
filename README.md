@@ -16,16 +16,16 @@ this app allows users to sign in, create a new user (user must be approved befor
 
 ## Technologies Used
 
-- **Backend:** Java, Spring Boot, MySQL, Docker
-- **Frontend:** TypeScript, React, Redux
+- **Backend:** Java, Spring Boot, MySQL
+- **Frontend:** TypeScript, React
 - **Deployment:** Azure Web App, Azure SQL Database - note: azure site currently down
 
 ## Installation
 
 ### Prerequisites
 
-- Java 11 or higher
-- Node.js and npm
+- Java 17 (other versions untested)
+- NPM
 - MySQL
 
 ### Backend
