@@ -18,5 +18,8 @@ this app allows users to sign in, create a new user (user must be approved befor
 
 - **Backend:** Java, Spring Boot, MySQL
 - **Frontend:** TypeScript, React
-- **Deployment:** Azure Web App, Azure SQL Database - note: azure site currently down
+- **Deployment:** Azure Web App, Azure SQL Database, Azure Container Registry, Docker
 
+## Live Azure Site
+
+https://green-mud-06581fb0f.5.azurestaticapps.net
