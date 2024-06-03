@@ -103,7 +103,11 @@ const LoginPage = () => {
                 onChange={handleChange}
                 className="login__form__input"
               />
-              {errorMessage && <p className="error">{errorMessage}</p>}
+              {errorMessage && (
+                <p role="alert" className="error">
+                  {errorMessage}
+                </p>
+              )}
             </div>
             <div className="login__btn-cont">
               <button type="submit" className="login__submit">
