@@ -3,9 +3,17 @@ import { getAllUsers } from "../Services/User_services";
 import { useNavigate } from "react-router-dom";
 import "../Styles/LoginPageStyles.scss";
 import { usePersistedLoginContext } from "../Contexts/UsePersistedLoginContext";
+import "../Styles/MiscStyles.scss";
+
+interface User {
+  approvedBy: string | null;
+  username: string;
+  password: string;
+}
 
 const LoginPage = () => {
-  const [userList, setUserList] = useState([]);
+  const [userList, setUserList] = useState<User[]>([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const [loginAttempt, setLoginAttempt] = useState({
     username: "",
@@ -42,18 +50,23 @@ const LoginPage = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const user = userList.find(
-      (u: { username: string; password: string }) =>
+      (u) =>
         u.username === loginAttempt.username &&
         u.password === loginAttempt.password
     );
+
     if (user) {
-      setPersistedLogin({
-        username: loginAttempt.username,
-        password: loginAttempt.password,
-      });
-      navigate("/directory");
+      if (user.approvedBy != null) {
+        setPersistedLogin({
+          username: loginAttempt.username,
+          password: loginAttempt.password,
+        });
+        navigate("/directory");
+      } else {
+        setErrorMessage("Access denied - Account awaiting approval");
+      }
     } else {
-      console.log("invalid credentials");
+      setErrorMessage("Invalid credentials");
     }
   };
 
@@ -90,6 +103,7 @@ const LoginPage = () => {
                 onChange={handleChange}
                 className="login__form__input"
               />
+              {errorMessage && <p className="error">{errorMessage}</p>}
             </div>
             <div className="login__btn-cont">
               <button type="submit" className="login__submit">
