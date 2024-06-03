@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useEmployeeContext } from "../Contexts/UseEmployeeContext";
 import EmployeeCard from "../Components/EmployeeCard";
 import "../Styles/EmployeeDirectoryStyles.scss";
@@ -10,19 +10,21 @@ import { getAllEmployeeItems } from "../Services/Employee_Crud_services";
 
 const EmployeeDirectory = () => {
   const { employeeList, setEmployeeList } = useEmployeeContext();
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-
   const { persistedLogin } = usePersistedLoginContext();
 
   useEffect(() => {
     const fetchEmployeeList = async () => {
+      setLoading(true);
       try {
         const data = await getAllEmployeeItems();
         setEmployeeList(data);
       } catch (error) {
         console.error("Failed to fetch Employee list", error);
       }
+      setLoading(false);
     };
 
     if (persistedLogin && persistedLogin.username) {
@@ -57,11 +59,15 @@ const EmployeeDirectory = () => {
         <h1 className="directory__header__title">Employee Directory</h1>
       </header>
       <DirectoryUtilities />
-      <div className="directory__card-container">
-        {employeeList.map((employeeCard) => (
-          <EmployeeCard {...employeeCard} key={employeeCard.id} />
-        ))}
-      </div>
+      {loading ? (
+        <div className="loading-middle">Loading...</div>
+      ) : (
+        <div className="directory__card-container">
+          {employeeList.map((employeeCard) => (
+            <EmployeeCard {...employeeCard} key={employeeCard.id} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

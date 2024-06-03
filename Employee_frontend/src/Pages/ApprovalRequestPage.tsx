@@ -5,6 +5,7 @@ import {
 } from "../Services/User_services";
 import { usePersistedLoginContext } from "../Contexts/UsePersistedLoginContext";
 import "../Styles/ApprovalPageStyles.scss";
+import "../Styles/MiscStyles.scss";
 import { useNavigate } from "react-router-dom";
 
 const ApprovalRequestPage = () => {
@@ -55,8 +56,6 @@ const ApprovalRequestPage = () => {
     navigate("/directory");
   };
 
-  if (loading) return <div>Loading...</div>;
-
   return (
     <div>
       <header className="approvals__header">
@@ -65,7 +64,9 @@ const ApprovalRequestPage = () => {
       <button onClick={returnToDirectory} className="approvals__btn">
         Home
       </button>
-      {userList.filter((user) => !user.approvedBy).length > 0 ? (
+      {loading ? (
+        <div className="loading-left">Loading...</div>
+      ) : userList.filter((user) => !user.approvedBy).length > 0 ? (
         <ul className="approvals__list">
           {userList
             .filter((user) => !user.approvedBy)

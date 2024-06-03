@@ -1,5 +1,18 @@
 @use "./Variables.scss";
 
+.loading {
+  &-left {
+    margin-left: 2rem;
+    font-weight: 700;
+    margin-top: 2rem;
+  }
+  &-middle {
+    font-weight: 700;
+    text-align: center;
+    font-size: larger;
+  }
+}
+
 .form {
   &__btn {
     margin-bottom: 24px;
