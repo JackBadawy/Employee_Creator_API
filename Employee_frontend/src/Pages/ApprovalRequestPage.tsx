@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 const ApprovalRequestPage = () => {
   const [userList, setUserList] = useState<User[]>([]);
   const [loading, setLoading] = useState(false);
+  const [approvingUserId, setApprovingUserId] = useState<number | null>(null);
 
   const { persistedLogin } = usePersistedLoginContext();
 
@@ -38,6 +39,7 @@ const ApprovalRequestPage = () => {
   }, []);
 
   const handleApprove = async (userId: number) => {
+    setApprovingUserId(userId);
     try {
       await approveUser(userId.toString(), persistedLogin.username);
       setUserList((currentUsers) =>
@@ -50,6 +52,7 @@ const ApprovalRequestPage = () => {
     } catch (error) {
       console.error("Failed to approve user", error);
     }
+    setApprovingUserId(null);
   };
 
   const returnToDirectory = () => {
@@ -76,8 +79,9 @@ const ApprovalRequestPage = () => {
                 <button
                   className="approvals__btn"
                   onClick={() => handleApprove(user.id)}
+                  disabled={approvingUserId === user.id}
                 >
-                  Approve
+                  {approvingUserId === user.id ? "Please wait..." : "Approve"}
                 </button>
               </li>
             ))}
