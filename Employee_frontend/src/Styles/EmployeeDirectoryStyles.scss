@@ -30,6 +30,11 @@
       gap: 80px;
       margin-top: 40px;
       margin-bottom: 32px;
+      @media (max-width: 600px) {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+      }
     }
     &__btn {
       background-color: Variables.$btn-clr;
@@ -41,8 +46,19 @@
       justify-content: center;
       align-items: center;
       border-radius: 8px;
+
+      @media (max-width: 600px) {
+        width: 240px;
+      }
+
       &:hover {
         background-color: Variables.$btn-hover-clr;
+      }
+    }
+    &__para {
+      @media (max-width: 410px) {
+        margin: 0px 10px 0px 10px;
+        text-align: center;
       }
     }
   }
