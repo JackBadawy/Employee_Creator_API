@@ -21,14 +21,24 @@
   &__btn {
     margin-bottom: 24px;
     margin-left: 8px;
+    margin-top: 16px;
+    background-color: Variables.$btn-clr;
+    color: Variables.$btn-txt;
+    height: 32px;
+    width: 120px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
   }
   &__save {
     background-color: Variables.$btn-clr;
     color: Variables.$btn-txt;
     height: 32px;
-    margin-top: 16px;
+    margin-bottom: 16px;
     border-radius: 8px;
-    margin-right: 80%;
+    width: 180px;
     margin-left: 8px;
     border: none;
     &:hover {
