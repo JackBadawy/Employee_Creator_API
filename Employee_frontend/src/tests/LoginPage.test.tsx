@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { expect, vi, beforeEach } from "vitest";
+import { expect, vi } from "vitest";
 import LoginPage from "../Pages/LoginPage";
 import { MemoryRouter } from "react-router-dom";
 import { PersistedLoginProvider } from "../Contexts/PersistedLoginContext";
