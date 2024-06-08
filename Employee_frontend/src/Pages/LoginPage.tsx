@@ -125,7 +125,7 @@ const LoginPage = () => {
         <p className="login__note-txt">
           If you don't have access to an approved account please use the below
           login details, this account can be used to approve any users you
-          create
+          create. If login fails please wait 30 seconds and try again.
         </p>
         <p className="login__note-details">Username: Root</p>
         <p className="login__note-details">Password: 8uwodrEhl</p>
