@@ -54,7 +54,7 @@ public class EmployeeItem {
 	private int weeklyHours;
 	
 	@Column
-	private int[] startDate; //01012000 = first of january
+	private int[] startDate;
 	
 	@Column 
 	private int[] endDate; 
