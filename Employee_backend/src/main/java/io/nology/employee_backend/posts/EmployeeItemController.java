@@ -78,6 +78,17 @@ public class EmployeeItemController {
 		return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 	}
 
+	@PostMapping("/generate")
+	public ResponseEntity<List<EmployeeItem>> generateEmployees() {
+        List<EmployeeItem> employees = employeeItemService.generateRandomEmployees(20);
+        return ResponseEntity.ok(employees);
+    }
+	
+	@DeleteMapping("/deleteLast20")
+	   public ResponseEntity<Void> deleteLast20Employees() {
+	       employeeItemService.deleteLast20Employees();
+	       return ResponseEntity.noContent().build();
+	   }
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)

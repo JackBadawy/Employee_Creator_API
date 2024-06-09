@@ -34,7 +34,7 @@ public class EmployeeItem {
 	
 	@Column
 	private String contractLength;
-	
+
 	@Column
 	private String email;
 	

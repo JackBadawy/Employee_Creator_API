@@ -16,7 +16,7 @@ public class CreateEmployeeItemDTO {
 	@NotBlank
 	private String employmentType; //maybe change to single char
 	
-	@NotBlank 
+	
 	private String contractLength;
 	
 	private boolean currentEmployee;
