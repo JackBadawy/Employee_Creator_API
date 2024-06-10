@@ -12,6 +12,7 @@ const EditEmployeePage = () => {
   const { employeeId } = useParams<{ employeeId?: string }>();
   const [loading, setLoading] = useState(false);
   const [buttonClicked, setButtonClicked] = useState(false);
+  const [isPerm, setIsPerm] = useState(false);
 
   const [editEmployeeFormData, setEditEmployeeFormData] = useState({
     firstName: "",
@@ -19,18 +20,14 @@ const EditEmployeePage = () => {
     email: "",
     address: "",
     employmentType: "",
-    contractLength: "",
+    contractLength: null,
     currentEmployee: true,
-    startDate: [1, 1, 1] as [number, number, number],
-    endDate: [1, 1, 1] as [number, number, number],
+    startDate: [1, 1, 1],
+    endDate: [1, 1, 1],
     fullTime: true,
     salary: 0,
     weeklyHours: 0,
   });
-
-  useEffect(() => {
-    console.log("Start Date", editEmployeeFormData.startDate);
-  }, [editEmployeeFormData.startDate]);
 
   const [startDate, setStartDate] = useState({
     year: new Date().getFullYear(),
@@ -80,6 +77,10 @@ const EditEmployeePage = () => {
       try {
         const data = await getEmployeeById(employeeId);
         setEditEmployeeFormData(data);
+        setIsPerm(
+          data.employmentType === "permanent" ||
+            data.employmentType === "Permanent"
+        );
         if (data.startDate && data.startDate.length === 3) {
           setStartDate({
             year: data.startDate[2],
@@ -108,10 +109,21 @@ const EditEmployeePage = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, type, value } = e.target;
-    setEditEmployeeFormData((prevState) => ({
-      ...prevState,
-      [name]: type === "radio" ? value === "true" : value,
-    }));
+    setEditEmployeeFormData((prevState) => {
+      const newFormData = {
+        ...prevState,
+        [name]: type === "radio" ? value === "true" : value,
+      };
+      if (name === "employmentType") {
+        if (value === "permanent") {
+          setIsPerm(true);
+          newFormData.contractLength = null;
+        } else {
+          setIsPerm(false);
+        }
+      }
+      return newFormData;
+    });
   };
 
   const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -130,8 +142,6 @@ const EditEmployeePage = () => {
         number
       ],
     };
-
-    console.log("edited form", updatedFormData);
 
     const formValues = Object.values(updatedFormData);
     if (formValues.some((value) => value === "")) {
@@ -156,6 +166,10 @@ const EditEmployeePage = () => {
     } finally {
       setButtonClicked(false);
     }
+  };
+
+  const isContractLengthDisabled = () => {
+    return isPerm;
   };
 
   return (
@@ -266,10 +280,17 @@ const EditEmployeePage = () => {
               <select
                 name="contractLength"
                 id="contractLength"
-                value={editEmployeeFormData.contractLength}
                 onChange={handleChange}
+                disabled={isContractLengthDisabled()}
+                style={{
+                  backgroundColor: isContractLengthDisabled()
+                    ? "#e0e0e0"
+                    : "white",
+                }}
               >
-                <option value="1 yr">1 Year</option>
+                <option value="1 yr">
+                  {isContractLengthDisabled() ? "" : "1 Year"}
+                </option>
                 <option value="2 yr">2 Years</option>
                 <option value="5 yr">5 Years</option>
                 <option value="10 yr">10 Years</option>

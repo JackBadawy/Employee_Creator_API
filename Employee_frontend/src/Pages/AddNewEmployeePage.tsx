@@ -12,7 +12,7 @@ const AddNewEmployeePage = () => {
     email: "",
     address: "",
     employmentType: "Permanent",
-    contractLength: "1 yr",
+    contractLength: null,
     currentEmployee: true,
     startDate: [1, 1, 1],
     endDate: [1, 1, 1],
@@ -103,8 +103,16 @@ const AddNewEmployeePage = () => {
       setNewEmployeeFormData({
         ...newEmployeeFormData,
         [name]: value,
+        contractLength:
+          name === "employmentType" && value === "Permanent"
+            ? null
+            : newEmployeeFormData.contractLength,
       });
     }
+  };
+
+  const isContractLengthDisabled = () => {
+    return newEmployeeFormData.employmentType === "Permanent";
   };
 
   return (
@@ -170,7 +178,7 @@ const AddNewEmployeePage = () => {
           <div className="employee-form__status form__division">
             <h3>Employee status</h3>
             <div className="employee-form__item">
-              <label htmlFor="employementType" className="form__label">
+              <label htmlFor="employmentType" className="form__label">
                 Employment Type:{" "}
               </label>
               <select
@@ -178,8 +186,8 @@ const AddNewEmployeePage = () => {
                 id="employmentType"
                 onChange={handleChange}
               >
-                <option value="permanent">Permanent</option>
-                <option value="contract">Contract</option>
+                <option value="Permanent">Permanent</option>
+                <option value="Contract">Contract</option>
               </select>
             </div>
 
@@ -191,8 +199,16 @@ const AddNewEmployeePage = () => {
                 name="contractLength"
                 id="contractLength"
                 onChange={handleChange}
+                disabled={isContractLengthDisabled()}
+                style={{
+                  backgroundColor: isContractLengthDisabled()
+                    ? "#e0e0e0"
+                    : "white",
+                }}
               >
-                <option value="1 yr">1 Year</option>
+                <option value="1 yr">
+                  {isContractLengthDisabled() ? "" : "1 Year"}
+                </option>
                 <option value="2 yr">2 Years</option>
                 <option value="5 yr">5 Years</option>
                 <option value="10 yr">10 Years</option>

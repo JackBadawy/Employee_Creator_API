@@ -14,7 +14,7 @@ export interface EmployeeItem {
   lastName: string;
   address: string;
   email: string;
-  contractLength: string;
+  contractLength: string | null;
   currentEmployee: boolean;
   startDate: [number, number, number];
   endDate: [number, number, number];
