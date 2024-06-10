@@ -5,7 +5,7 @@ export interface EmployeeDetails {
   email: string;
   address: string;
   employmentType: string;
-  contractLength: string;
+  contractLength: string | null;
   currentEmployee: boolean;
   startDate: [number, number, number];
   endDate: [number, number, number];
