@@ -170,6 +170,20 @@ const AddNewEmployeePage = () => {
           <div className="employee-form__status form__division">
             <h3>Employee status</h3>
             <div className="employee-form__item">
+              <label htmlFor="employementType" className="form__label">
+                Employment Type:{" "}
+              </label>
+              <select
+                name="employmentType"
+                id="employmentType"
+                onChange={handleChange}
+              >
+                <option value="permanent">Permanent</option>
+                <option value="contract">Contract</option>
+              </select>
+            </div>
+
+            <div className="employee-form__item">
               <label htmlFor="contractLength" className="form__label">
                 Contract Length:{" "}
               </label>
@@ -182,109 +196,6 @@ const AddNewEmployeePage = () => {
                 <option value="2 yr">2 Years</option>
                 <option value="5 yr">5 Years</option>
                 <option value="10 yr">10 Years</option>
-              </select>
-              <div className="employee-form__item" id="start-date__container">
-                <label htmlFor="start-date__container" className="form__label">
-                  Start Date:
-                </label>
-                <div className="employee-form__date-box__container">
-                  <select
-                    name="year"
-                    id="startYear"
-                    value={startDate.year}
-                    onChange={handleDateChange}
-                  >
-                    {years.map((year) => (
-                      <option key={year} value={year}>
-                        {year}
-                      </option>
-                    ))}
-                  </select>
-
-                  <select
-                    name="month"
-                    id="startMonth"
-                    value={startDate.month}
-                    onChange={handleDateChange}
-                  >
-                    {months.map((month) => (
-                      <option key={month} value={month}>
-                        {month}
-                      </option>
-                    ))}
-                  </select>
-
-                  <select
-                    name="day"
-                    id="startDay"
-                    value={startDate.day}
-                    onChange={handleDateChange}
-                  >
-                    {days.map((day) => (
-                      <option key={day} value={day}>
-                        {day}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-              <div className="employee-form__item" id="end-date__container">
-                <label htmlFor="end-date__container" className="form__label">
-                  End Date:
-                </label>
-                <div className="employee-form__date-box__container">
-                  <select
-                    name="year"
-                    id="endYear"
-                    value={endDate.year}
-                    onChange={handleEndDateChange}
-                  >
-                    {years.map((year) => (
-                      <option key={year} value={year}>
-                        {year}
-                      </option>
-                    ))}
-                  </select>
-
-                  <select
-                    name="month"
-                    id="endMonth"
-                    value={endDate.month}
-                    onChange={handleEndDateChange}
-                  >
-                    {months.map((month) => (
-                      <option key={month} value={month}>
-                        {month}
-                      </option>
-                    ))}
-                  </select>
-
-                  <select
-                    name="day"
-                    id="endDay"
-                    value={endDate.day}
-                    onChange={handleEndDateChange}
-                  >
-                    {days.map((day) => (
-                      <option key={day} value={day}>
-                        {day}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div className="employee-form__item">
-              <label htmlFor="employementType" className="form__label">
-                Employment Type:{" "}
-              </label>
-              <select
-                name="employmentType"
-                id="employmentType"
-                onChange={handleChange}
-              >
-                <option value="permanent">Permanent</option>
-                <option value="contract">Contract</option>
               </select>
             </div>
             <div className="employee-form__item employee-form__current-employee">
@@ -307,6 +218,96 @@ const AddNewEmployeePage = () => {
                 onChange={handleChange}
                 checked={newEmployeeFormData.currentEmployee === false}
               />
+            </div>
+            <div className="employee-form__item" id="start-date__container">
+              <label htmlFor="start-date__container" className="form__label">
+                Start Date:
+              </label>
+              <div className="employee-form__date-box__container">
+                <select
+                  name="year"
+                  id="startYear"
+                  value={startDate.year}
+                  onChange={handleDateChange}
+                >
+                  {years.map((year) => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  ))}
+                </select>
+
+                <select
+                  name="month"
+                  id="startMonth"
+                  value={startDate.month}
+                  onChange={handleDateChange}
+                >
+                  {months.map((month) => (
+                    <option key={month} value={month}>
+                      {month}
+                    </option>
+                  ))}
+                </select>
+
+                <select
+                  name="day"
+                  id="startDay"
+                  value={startDate.day}
+                  onChange={handleDateChange}
+                >
+                  {days.map((day) => (
+                    <option key={day} value={day}>
+                      {day}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className="employee-form__item" id="end-date__container">
+              <label htmlFor="end-date__container" className="form__label">
+                End Date:
+              </label>
+              <div className="employee-form__date-box__container">
+                <select
+                  name="year"
+                  id="endYear"
+                  value={endDate.year}
+                  onChange={handleEndDateChange}
+                >
+                  {years.map((year) => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  ))}
+                </select>
+
+                <select
+                  name="month"
+                  id="endMonth"
+                  value={endDate.month}
+                  onChange={handleEndDateChange}
+                >
+                  {months.map((month) => (
+                    <option key={month} value={month}>
+                      {month}
+                    </option>
+                  ))}
+                </select>
+
+                <select
+                  name="day"
+                  id="endDay"
+                  value={endDate.day}
+                  onChange={handleEndDateChange}
+                >
+                  {days.map((day) => (
+                    <option key={day} value={day}>
+                      {day}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
           </div>
           <button type="submit" className="form__save" disabled={buttonClicked}>

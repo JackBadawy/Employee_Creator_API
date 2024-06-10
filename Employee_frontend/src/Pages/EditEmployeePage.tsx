@@ -225,6 +225,41 @@ const EditEmployeePage = () => {
           <div className="employee-form__status form__division">
             <h3>Employee status</h3>
             <div className="employee-form__item">
+              <label htmlFor="employementType" className="form__label">
+                Employment Type:{" "}
+              </label>
+              <select
+                name="employmentType"
+                id="employmentType"
+                value={editEmployeeFormData.employmentType}
+                onChange={handleChange}
+              >
+                <option value="permanent">Permanent</option>
+                <option value="contract">Contract</option>
+              </select>
+            </div>
+            <div className="employee-form__item employee-form__current-employee">
+              <p>Current employee:</p>
+              <label htmlFor="yesCurrent">Yes</label>
+              <input
+                type="radio"
+                id="yesCurrent"
+                name="currentEmployee"
+                value="true"
+                onChange={handleChange}
+                checked={editEmployeeFormData.currentEmployee === true}
+              />
+              <label htmlFor="noCurrent">No</label>
+              <input
+                type="radio"
+                id="noCurrent"
+                name="currentEmployee"
+                value="false"
+                onChange={handleChange}
+                checked={editEmployeeFormData.currentEmployee === false}
+              />
+            </div>
+            <div className="employee-form__item">
               <label htmlFor="contractLength" className="form__label">
                 Contract Length:{" "}
               </label>
@@ -329,41 +364,6 @@ const EditEmployeePage = () => {
                   ))}
                 </select>
               </div>
-            </div>
-            <div className="employee-form__item">
-              <label htmlFor="employementType" className="form__label">
-                Employment Type:{" "}
-              </label>
-              <select
-                name="employmentType"
-                id="employmentType"
-                value={editEmployeeFormData.employmentType}
-                onChange={handleChange}
-              >
-                <option value="permanent">Permanent</option>
-                <option value="contract">Contract</option>
-              </select>
-            </div>
-            <div className="employee-form__item employee-form__current-employee">
-              <p>Current employee:</p>
-              <label htmlFor="yesCurrent">Yes</label>
-              <input
-                type="radio"
-                id="yesCurrent"
-                name="currentEmployee"
-                value="true"
-                onChange={handleChange}
-                checked={editEmployeeFormData.currentEmployee === true}
-              />
-              <label htmlFor="noCurrent">No</label>
-              <input
-                type="radio"
-                id="noCurrent"
-                name="currentEmployee"
-                value="false"
-                onChange={handleChange}
-                checked={editEmployeeFormData.currentEmployee === false}
-              />
             </div>
           </div>
           <button type="submit" className="form__save" disabled={buttonClicked}>
