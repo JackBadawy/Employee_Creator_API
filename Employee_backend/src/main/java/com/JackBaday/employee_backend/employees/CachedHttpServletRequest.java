@@ -1,4 +1,4 @@
-package com.JackBaday.employee_backend.posts;
+package com.JackBaday.employee_backend.employees;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;

@@ -1,4 +1,4 @@
-package com.JackBaday.employee_backend.posts;
+package com.JackBaday.employee_backend.employees;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Pattern;

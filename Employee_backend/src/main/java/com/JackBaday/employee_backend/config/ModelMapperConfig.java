@@ -6,7 +6,7 @@ import org.modelmapper.spi.MappingContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.JackBaday.employee_backend.posts.CreateEmployeeItemDTO;
+import com.JackBaday.employee_backend.employees.CreateEmployeeItemDTO;
 
 @Configuration
 public class ModelMapperConfig {

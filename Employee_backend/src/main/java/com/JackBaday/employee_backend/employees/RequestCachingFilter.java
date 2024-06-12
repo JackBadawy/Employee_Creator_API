@@ -1,4 +1,4 @@
-package com.JackBaday.employee_backend.posts;
+package com.JackBaday.employee_backend.employees;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
