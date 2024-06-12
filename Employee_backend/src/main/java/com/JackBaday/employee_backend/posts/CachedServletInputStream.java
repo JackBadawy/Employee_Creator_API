@@ -1,4 +1,4 @@
-package io.nology.employee_backend.posts;
+package com.JackBaday.employee_backend.posts;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package io.nology.employee_backend;
+package com.JackBaday.employee_backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

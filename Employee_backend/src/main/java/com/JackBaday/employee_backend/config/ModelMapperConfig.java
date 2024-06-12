@@ -1,4 +1,4 @@
-package io.nology.employee_backend.config;
+package com.JackBaday.employee_backend.config;
 
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
@@ -6,7 +6,7 @@ import org.modelmapper.spi.MappingContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import io.nology.employee_backend.posts.CreateEmployeeItemDTO;
+import com.JackBaday.employee_backend.posts.CreateEmployeeItemDTO;
 
 @Configuration
 public class ModelMapperConfig {

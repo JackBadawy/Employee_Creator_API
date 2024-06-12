@@ -1,4 +1,4 @@
-package io.nology.employee_backend.approvedUsers;
+package com.JackBaday.employee_backend.approvedUsers;
 
 import org.springframework.lang.Nullable;
 

@@ -1,4 +1,4 @@
-package io.nology.employee_backend.config;
+package com.JackBaday.employee_backend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,7 @@ public class WebConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("https://green-mud-06581fb0f.5.azurestaticapps.net"); 
+        config.addAllowedOrigin("http://localhost:5173/"); 
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
