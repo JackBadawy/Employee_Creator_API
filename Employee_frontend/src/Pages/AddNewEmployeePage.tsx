@@ -115,6 +115,17 @@ const AddNewEmployeePage = () => {
     return newEmployeeFormData.employmentType === "Permanent";
   };
 
+  const isEndDateDisabled = () => {
+    return (
+      newEmployeeFormData.employmentType === "Permanent" &&
+      newEmployeeFormData.currentEmployee === true
+    );
+  };
+
+  const getDisabledEndDateValue = (value: number) => {
+    return isEndDateDisabled() ? "" : value;
+  };
+
   return (
     <div>
       <header className="directory__header">
@@ -288,12 +299,16 @@ const AddNewEmployeePage = () => {
                 <select
                   name="year"
                   id="endYear"
-                  value={endDate.year}
+                  value={getDisabledEndDateValue(endDate.year)}
                   onChange={handleEndDateChange}
+                  disabled={isEndDateDisabled()}
+                  style={{
+                    backgroundColor: isEndDateDisabled() ? "#e0e0e0" : "white",
+                  }}
                 >
-                  {years.map((year) => (
+                  {years.map((year, index) => (
                     <option key={year} value={year}>
-                      {year}
+                      {isEndDateDisabled() && index === 0 ? "" : year}
                     </option>
                   ))}
                 </select>
@@ -301,12 +316,16 @@ const AddNewEmployeePage = () => {
                 <select
                   name="month"
                   id="endMonth"
-                  value={endDate.month}
+                  value={getDisabledEndDateValue(endDate.month)}
                   onChange={handleEndDateChange}
+                  disabled={isEndDateDisabled()}
+                  style={{
+                    backgroundColor: isEndDateDisabled() ? "#e0e0e0" : "white",
+                  }}
                 >
-                  {months.map((month) => (
+                  {months.map((month, index) => (
                     <option key={month} value={month}>
-                      {month}
+                      {isEndDateDisabled() && index === 0 ? "" : month}
                     </option>
                   ))}
                 </select>
@@ -314,12 +333,19 @@ const AddNewEmployeePage = () => {
                 <select
                   name="day"
                   id="endDay"
-                  value={endDate.day}
+                  value={getDisabledEndDateValue(endDate.day)}
                   onChange={handleEndDateChange}
+                  disabled={isEndDateDisabled()}
+                  style={{
+                    backgroundColor: isEndDateDisabled() ? "#e0e0e0" : "white",
+                  }}
                 >
-                  {days.map((day) => (
-                    <option key={day} value={day}>
-                      {day}
+                  {days.map((day, index) => (
+                    <option
+                      key={day}
+                      value={isEndDateDisabled() && index === 0 ? 0 : day}
+                    >
+                      {isEndDateDisabled() && index === 0 ? "" : day}
                     </option>
                   ))}
                 </select>
