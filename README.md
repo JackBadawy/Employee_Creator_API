@@ -21,5 +21,5 @@ this app allows users to sign in, create a new user (user must be approved befor
 - **Deployment:** Azure Web App, Azure SQL Database, Azure Container Registry, Docker
 
 ## Live Azure Site
-
+# Live site currently paused - will not work
 https://green-mud-06581fb0f.5.azurestaticapps.net
