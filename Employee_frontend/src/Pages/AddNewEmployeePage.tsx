@@ -190,7 +190,7 @@ const AddNewEmployeePage = () => {
             <h3>Employee status</h3>
             <div className="employee-form__item">
               <label htmlFor="employmentType" className="form__label">
-                Employment Type:{" "}
+                Employment Type:
               </label>
               <select
                 name="employmentType"

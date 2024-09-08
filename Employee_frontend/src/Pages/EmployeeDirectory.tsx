@@ -7,6 +7,7 @@ import { usePersistedLoginContext } from "../Contexts/UsePersistedLoginContext";
 import TopBar from "../Components/TopBar";
 import { useNavigate } from "react-router-dom";
 import { getAllEmployeeItems } from "../Services/Employee_Crud_services";
+import EmployeeDemoBtns from "../Components/Buttons/EmployeeDemoBtns";
 
 const EmployeeDirectory = () => {
   const { employeeList, setEmployeeList } = useEmployeeContext();
@@ -59,6 +60,7 @@ const EmployeeDirectory = () => {
         <h1 className="directory__header__title">Employee Directory</h1>
       </header>
       <DirectoryUtilities />
+      <EmployeeDemoBtns />
       {loading ? (
         <div className="loading-middle">Loading...</div>
       ) : (

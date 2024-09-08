@@ -66,3 +66,22 @@ export const approveUser = async (userId: string, approverUsername: string) => {
     throw error;
   }
 };
+
+export const generate20Employees = async () => {
+  const response = await fetch(`${BASE_URL}/generate`, {
+    method: "POST",
+  });
+  if (!response.ok) {
+    throw new Error("Failed to generate employees");
+  }
+  return await response.json();
+};
+
+export const deleteLast20Employees = async () => {
+  const response = await fetch(`${BASE_URL}/deleteLast20`, {
+    method: "DELETE",
+  });
+  if (!response.ok) {
+    throw new Error("Failed to delete employees");
+  }
+};
