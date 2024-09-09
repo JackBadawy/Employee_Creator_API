@@ -22,4 +22,5 @@ this app allows users to sign in, create a new user (user must be approved befor
 
 ## Live Azure Site
 
+delpoyment currently paused - site will not work until turned back on
 https://green-mud-06581fb0f.5.azurestaticapps.net
